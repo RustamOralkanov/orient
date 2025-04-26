@@ -1,0 +1,32 @@
+.custom-button {
+    cursor: pointer;
+    width: fit-content;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #fdfbf6;
+    height: 28px;
+    display: flex;
+    border-bottom: 2px solid white;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+
+    &:after {
+        transition: all 0.3s ease-in-out;
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        width: 70%;
+        height: 2px;
+        background: #cc9a4f;
+    }
+
+    &:hover {
+        &::after {
+            width: 100%;
+        }
+    }
+}

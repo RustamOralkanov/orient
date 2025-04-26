@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@import "./stylesheet.css";
+
+@theme {
+    --spacing: 1px;
+
+    --color-yellow: #fff3d8;
+    --color-yellow-100: #fdfbf6;
+    --color-yellow-dark: #cc9a4f;
+    --color-orange: #a05428;
+    --color-red: #6d3018;
+    --color-gray-900: #141312;
+
+    --font-display: "Montserrat", sans-serif;
+    --font-neumann: "Neumann", sans-serif;
+}
+
+body {
+    background-color: #fdfbf6;
+    font-family: "Montserrat", sans-serif;
+}
+
+.container {
+    padding-left: 70px;
+    padding-right: 70px;
+    width: 100%;
+    min-width: 100%;
+}
+
+.h2 {
+    font-family: "Neumann";
+    font-weight: 400;
+    font-size: 76px;
+    line-height: 110.00000000000001%;
+    text-transform: uppercase;
+}
