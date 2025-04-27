@@ -1,5 +1,5 @@
 import { useCarousel } from "@/shared/lib";
-import { OrientData } from "@/shared/model";
+import { OrientData, useOrientContext } from "@/shared/model";
 import { Button } from "@/shared/ui";
 import { CarouselButtons } from "@/shared/ui/arrowButton";
 import { Carousel } from "antd";
@@ -10,6 +10,7 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import "./ImprovementView.scss";
 
 export const ImprovementView = () => {
+    const { handleFormModal } = useOrientContext();
     const { carouselRef, nextSlide, prevSlide } = useCarousel();
     const [index, setIndex] = useState<number>(0);
     const [data, setData] = useState<OrientData["ru"]["improvement"] | null>(null);
@@ -36,7 +37,7 @@ export const ImprovementView = () => {
                     <img src={data?.image} className="w-full" />
                     <div className="flex flex-col gap-40 p-90 bg-[linear-gradient(147.21deg,_rgba(160,84,40,0.75)_19.59%,_rgba(58,30,15,0.75)_217.84%)] w-fit absolute top-100 right-0">
                         <p className="max-w-530 text-white -tracking-[0.03em]">{data?.description}</p>
-                        <Button>{data?.button}</Button>
+                        <Button onClick={handleFormModal}>{data?.button}</Button>
                     </div>
                 </div>
                 <div className="flex flex-col overflow-hidden w-[calc(100%_+_140px)] -mx-70 -mt-340">

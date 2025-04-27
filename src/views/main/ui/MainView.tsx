@@ -1,9 +1,11 @@
-import { OrientData } from "@/shared/model";
+import { MenuButton } from "@/entities/menu";
+import { OrientData, useOrientContext } from "@/shared/model";
 import { Button } from "@/shared/ui";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 export const MainView = () => {
+    const { handleFormModal } = useOrientContext();
     const [data, setData] = useState<OrientData["ru"] | null>(null);
     useEffect(() => {
         axios
@@ -27,6 +29,7 @@ export const MainView = () => {
                         <a href={`tel:${data?.phone}`} className="text-orange font-normal">
                             {data?.phone}
                         </a>
+                        <MenuButton />
                     </div>
                 </div>
                 <div className="flex flex-col gap-60">
@@ -34,7 +37,7 @@ export const MainView = () => {
                         <h1 className="font-neumann text-[63px] uppercase text-white leading-[1.1] max-w-620">{data?.main?.title}</h1>
                         <p className="text-[20px] uppercase text-white leading-[1.5] max-w-420 font-light">{data?.main?.subtitle}</p>
                     </div>
-                    <Button>{data?.leave_request}</Button>
+                    <Button onClick={handleFormModal}>{data?.leave_request}</Button>
                 </div>
             </div>
         </div>

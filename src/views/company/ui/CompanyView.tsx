@@ -1,10 +1,11 @@
-import { OrientData } from "@/shared/model";
+import { OrientData, useOrientContext } from "@/shared/model";
 import { Button } from "@/shared/ui";
 import { Col, Row } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 export const CompanyView = () => {
+    const { handleFormModal } = useOrientContext();
     const [data, setData] = useState<OrientData["ru"]["company"] | null>(null);
 
     useEffect(() => {
@@ -34,7 +35,7 @@ export const CompanyView = () => {
                         <div className="flex flex-col gap-40 py-50 pr-35 pl-70 bg-orange -mr-55 relative z-20">
                             <img src={data?.logo} alt="logo" className="max-w-110" />
                             <p className="text-[14px] text-white font-display font-light">{data?.description}</p>
-                            <Button>{data?.button}</Button>
+                            <Button onClick={handleFormModal}>{data?.button}</Button>
                         </div>
                     </div>
                 </Col>

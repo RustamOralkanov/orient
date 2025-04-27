@@ -13,6 +13,7 @@ import { MainView } from "@/views/main";
 import { ParkingView } from "@/views/parking";
 import { ServiceView } from "@/views/service";
 import { Footer } from "@/widgets/footer";
+import { OrientProvider } from "@/shared/provider";
 
 export const App = () => {
     const [data, setData] = useState<OrientData["ru"] | null>(null);
@@ -29,7 +30,7 @@ export const App = () => {
     }, []);
 
     return (
-        <>
+        <OrientProvider>
             <MainView />
             <AboutView />
             <LocationView />
@@ -42,6 +43,6 @@ export const App = () => {
             <CompanyView />
             <ServiceView {...data?.service} />
             <Footer {...data?.footer} />
-        </>
+        </OrientProvider>
     );
 };

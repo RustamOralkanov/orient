@@ -21,8 +21,8 @@ export const CtaView = () => {
     return (
         <div className="container mt-333">
             <Row>
-                <Col xl={10}>
-                    <div className="flex flex-col gap-40 bg-orange p-60 -mt-45">
+                <Col xl={10} className="bg-orange">
+                    <div className="flex flex-col h-full gap-40 bg-orange p-60 -mt-45">
                         <h4 className="uppercase text-[40px] -tracking-[0.01em] text-white font-light leading-tight font-display">{data?.title}</h4>
                         <p className="text-white uppercase text-[16px] leading-snug max-w-320 font-display">{data?.subtitle}</p>
                         <CtaForm />

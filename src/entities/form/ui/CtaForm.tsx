@@ -2,7 +2,7 @@ import { Form, FormProps } from "antd";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "@/shared/ui";
-import { OrientData } from "@/shared/model";
+import { OrientData, useOrientContext } from "@/shared/model";
 import { InputMask } from "@react-input/mask";
 
 type FieldType = {
@@ -14,6 +14,8 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
     const [form] = Form.useForm();
     const [data, setData] = useState<OrientData["ru"]["form"] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    const { isFormModal, handleFormModal } = useOrientContext();
 
     useEffect(() => {
         axios
@@ -81,6 +83,10 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
             .then((response) => {
                 console.log(response);
                 setIsLoading(false);
+
+                if (isFormModal) {
+                    handleFormModal();
+                }
             })
             .catch((error) => {
                 console.error(error);
@@ -89,11 +95,11 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
     };
 
     return (
-        <Form form={form} onFinish={onFinish} className="flex flex-col gap-35">
-            <Form.Item name="name" rules={[{ required: true, message: "Пожалуйста, заполните поле!" }]}>
+        <Form form={form} onFinish={onFinish} className={["flex flex-col ", modal ? "gap-24" : "gap-35"].join(" ")}>
+            <Form.Item name="name" rules={[{ required: true, message: "Пожалуйста, заполните поле!" }]} className="!mb-0">
                 <input className="h-55 border-b-1 border-b-red w-full text-[20px] uppercase text-white outline-0" placeholder={data?.name} />
             </Form.Item>
-            <Form.Item name="phone" rules={[{ required: true, message: "Пожалуйста, заполните поле!" }]}>
+            <Form.Item name="phone" rules={[{ required: true, message: "Пожалуйста, заполните поле!" }]} className="!mb-0">
                 <InputMask
                     mask="+7 (___) ___-__-__"
                     replacement={{ _: /\d/ }}
@@ -101,7 +107,7 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
                     placeholder={data?.phone}
                 />
             </Form.Item>
-            <Form.Item>
+            <Form.Item className="!mb-0 flex justify-end">
                 <Button disabled={isLoading}>{data?.button}</Button>
             </Form.Item>
         </Form>
