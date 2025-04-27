@@ -2,7 +2,7 @@ import { useCarousel } from "@/shared/lib";
 import { OrientData, useOrientContext } from "@/shared/model";
 import { Button } from "@/shared/ui";
 import { CarouselButtons } from "@/shared/ui/arrowButton";
-import { Carousel } from "antd";
+import { Carousel, Col, Row } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
@@ -54,26 +54,30 @@ export const ImprovementView = () => {
                     </ParallaxProvider>
                 </div>
             </div>
-            <div className="h-400 bg-orange container flex justify-between">
-                <div className="flex flex-col justify-between py-50">
-                    <div className="flex flex-col gap-12">
-                        <span className="text-yellow-100 uppercase leading-none">Благоустройство</span>
-                        <h4 className="max-w-420 text-[44px] uppercase text-white leading-tight">{data?.features?.[index]?.title}</h4>
+            <Row className="bg-orange">
+                <Col xl={12}>
+                    <div className="flex flex-col h-full justify-between py-50 font-display pl-70">
+                        <div className="flex flex-col gap-12">
+                            <span className="text-yellow-100 uppercase leading-none">Благоустройство</span>
+                            <h4 className="max-w-420 text-[44px] uppercase text-white leading-tight">{data?.features?.[index]?.title}</h4>
+                        </div>
+                        <CarouselButtons total={data?.features?.length as number} next={nextSlide} prev={prevSlide} color="text-gray-900" />
                     </div>
-                    <CarouselButtons total={data?.features?.length as number} next={nextSlide} prev={prevSlide} color="text-gray-900" />
-                </div>
-                <div className="w-710 h-500 -mr-70 -mt-100">
-                    <Carousel dots={false} ref={carouselRef} afterChange={(id) => setIndex(id)}>
-                        {data?.features?.map((feature, id) => (
-                            <div key={id}>
-                                <div className="w-710 h-500">
-                                    <img src={feature?.image} className="w-full h-full object-cover" />
+                </Col>
+                <Col xl={12} className="-mt-100">
+                    <div className="w-full">
+                        <Carousel dots={false} ref={carouselRef} afterChange={(id) => setIndex(id)}>
+                            {data?.features?.map((feature, id) => (
+                                <div key={id}>
+                                    <div>
+                                        <img src={feature?.image} className="w-full h-full object-contain" />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </Carousel>
-                </div>
-            </div>
+                            ))}
+                        </Carousel>
+                    </div>
+                </Col>
+            </Row>
             <Gallery data={data as OrientData["ru"]["improvement"]} />
         </>
     );
