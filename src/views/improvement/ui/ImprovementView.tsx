@@ -27,7 +27,7 @@ export const ImprovementView = () => {
 
     return (
         <>
-            <div className="container pt-273 pb-218 bg-gray-900">
+            <div className="container pt-273 pb-218 bg-gray-900" id="improvement">
                 <div className="relative flex justify-center -mb-30 z-10">
                     <h2 className="h2 text-white text">{data?.title}</h2>
                     <img src="/improvement-kursiv.svg" alt="location" className="absolute top-2/4 -translate-y-2/4" />

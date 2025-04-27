@@ -24,7 +24,7 @@ export const LocationView = () => {
 
     return (
         <>
-            <div className="container bg-orange pt-120">
+            <div className="container bg-orange pt-120" id="location">
                 <div className="relative flex justify-center">
                     <h2 className="h2 text-white text">{data?.title}</h2>
                     <img src="/location.svg" alt="location" className="absolute top-2/4 -translate-y-2/4" />

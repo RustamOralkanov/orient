@@ -7,6 +7,8 @@ interface CarouselButtonsProps {
     prev: () => void;
     color?: string;
     justifyBetween?: boolean;
+    buttonClassNames?: string;
+    counterClassNames?: string;
 }
 
 export const CarouselButtons: React.FC<CarouselButtonsProps> = (props) => {
@@ -31,9 +33,10 @@ export const CarouselButtons: React.FC<CarouselButtonsProps> = (props) => {
             <Flex align="center" justify={props.justifyBetween ? "space-between" : "flex-start"} gap={12}>
                 <Flex align="center" gap={12}>
                     <button
-                        className={
-                            "flex items-center justify-center w-64 h-64 rounded-full border-1 border-white text-white transition-all duration-300 hover:bg-white hover:text-orange cursor-pointer"
-                        }
+                        className={[
+                            "flex items-center justify-center w-64 h-64 rounded-full border-1 border-white text-white transition-all duration-300 hover:bg-white hover:text-gray-900 cursor-pointer",
+                            props.buttonClassNames,
+                        ].join(" ")}
                         onClick={handlePrev}
                     >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,9 +47,10 @@ export const CarouselButtons: React.FC<CarouselButtonsProps> = (props) => {
                         </svg>
                     </button>
                     <button
-                        className={
-                            "flex items-center justify-center w-64 h-64 rounded-full border-1 border-white text-white transition-all duration-300 hover:bg-white hover:text-orange cursor-pointer"
-                        }
+                        className={[
+                            "flex items-center justify-center w-64 h-64 rounded-full border-1 border-white text-white transition-all duration-300 hover:bg-white hover:text-gray-900 cursor-pointer",
+                            props.buttonClassNames,
+                        ].join(" ")}
                         onClick={handleNext}
                     >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,8 +62,7 @@ export const CarouselButtons: React.FC<CarouselButtonsProps> = (props) => {
                     </button>
                 </Flex>
                 <div className={["flex items-end gap-3  leading-none", props.color ? props.color : "text-orange"].join(" ")}>
-                    <span className={["text-white text-2xl", props.color ? props.color : "text-orange"].join(" ")}>{current}</span>/
-                    <span className="text-sm leading-tight">{props.total}</span>
+                    <span className={["text-white text-2xl", props.counterClassNames].join(" ")}>{current}</span>/<span className="text-sm leading-tight">{props.total}</span>
                 </div>
             </Flex>
         </div>

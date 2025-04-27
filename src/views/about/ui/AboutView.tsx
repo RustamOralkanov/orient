@@ -26,7 +26,7 @@ export const AboutView = () => {
     };
 
     return (
-        <div className="container pt-150 pb-130 relative">
+        <div className="container pt-150 pb-130 relative" id="about">
             <div className="flex flex-col gap-54 pl-220 relative z-[2]">
                 <h2 className="h2">{data?.about.title}</h2>
                 <p className="text-[32px] uppercase leading-tight max-w-570">
