@@ -112,7 +112,6 @@ const Gallery = ({ data }: { data: OrientData["ru"]["improvement"] }) => {
                         </div>
                     ))}
                 </Carousel>
-
                 <CarouselButtons total={gallery.length} next={nextSlide} prev={prevSlide} color="text-white" justifyBetween />
             </div>
         </div>
