@@ -2,6 +2,7 @@ import { MenuButton } from "@/entities/menu";
 import { OrientData, useOrientContext } from "@/shared/model";
 import { Button } from "@/shared/ui";
 import axios from "axios";
+import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 export const MainView = () => {
@@ -20,7 +21,18 @@ export const MainView = () => {
 
     return (
         <div className="h-800 relative pt-30 px-70">
-            <img src="/main-bg.png" alt="bg" className="absolute h-full w-[65%] object-cover left-0 top-0" />
+            <div className="absolute  top-0 left-0 w-[65%] h-full">
+                <div className=" w-full h-full bg-orange top-0 left-0 opacity-75" />
+                <motion.img
+                    initial={{ x: 200 }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 4 }}
+                    src="/a554ac92035171a9ea2610dd00edf607449cd416.jpg"
+                    alt="bg"
+                    className="-z-10 w-auto h-full absolute top-0 left-0"
+                />
+            </div>
+
             <img src="/main.png" alt="bg" className="object-cover absolute w-[49%] right-0 bottom-0 h-690" />
             <div className="flex flex-col relative z-10 gap-107">
                 <div className="flex items-start justify-between">
