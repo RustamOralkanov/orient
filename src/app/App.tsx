@@ -31,7 +31,7 @@ export const App = () => {
 
     return (
         <OrientProvider>
-            <MainView />
+            <MainView {...data} />
             <AboutView />
             <LocationView />
             <ImprovementView />
