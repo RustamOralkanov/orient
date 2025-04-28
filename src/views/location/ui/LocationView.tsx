@@ -3,7 +3,7 @@ import axios from "axios";
 import { OrientData } from "@/shared/model";
 import { Button } from "@/shared/ui";
 import { CarouselButtons } from "@/shared/ui/arrowButton";
-import { Carousel } from "antd";
+import { Carousel, Col, Row } from "antd";
 import { useCarousel } from "@/shared/lib";
 
 export const LocationView = () => {
@@ -24,7 +24,7 @@ export const LocationView = () => {
 
     return (
         <>
-            <div className="container bg-orange pt-120">
+            <div className="container bg-orange pt-120" id="location">
                 <div className="relative flex justify-center">
                     <h2 className="h2 text-white text">{data?.title}</h2>
                     <img src="/location.svg" alt="location" className="absolute top-2/4 -translate-y-2/4" />
@@ -40,38 +40,44 @@ export const LocationView = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-red py-60 flex items-start justify-between container">
-                <div className="flex flex-col justify-between max-w-420 gap-117">
-                    <div className="flex flex-col gap-30">
-                        <h5 className="text-[44px] text-white leading-tight">{data?.places?.[index]?.title}</h5>
-                        <div className="flex gap-56 items-center">
-                            <div className="flex gap-8 items-center">
-                                <span className="text-[32px] text-yellow-dark leading-none">{data?.places?.[index]?.onCar}</span>
-                                <div className="flex flex-col">
-                                    <span className="leading-tight text-white text-xs">минут</span>
-                                    <span className="leading-tight text-white text-xs">пешком</span>
+            <div className="bg-red py-60">
+                <Row>
+                    <Col xl={12}>
+                        <div className="flex flex-col justify-between gap-117 pl-70  font-display">
+                            <div className="flex flex-col gap-30">
+                                <h5 className="text-[44px] text-white leading-tight max-w-420 ">{data?.places?.[index]?.title}</h5>
+                                <div className="flex gap-56 items-center">
+                                    <div className="flex gap-8 items-center">
+                                        <span className="text-[32px] text-yellow-dark leading-none">{data?.places?.[index]?.onCar}</span>
+                                        <div className="flex flex-col">
+                                            <span className="leading-tight text-white text-xs">минут</span>
+                                            <span className="leading-tight text-white text-xs">пешком</span>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-8 items-center">
+                                        <span className="text-[32px] text-yellow-dark leading-none">{data?.places?.[index]?.onWalking}</span>
+                                        <div className="flex flex-col">
+                                            <span className="leading-tight text-white text-xs">минут</span>
+                                            <span className="leading-tight text-white text-xs">на машине</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="flex gap-8 items-center">
-                                <span className="text-[32px] text-yellow-dark leading-none">{data?.places?.[index]?.onWalking}</span>
-                                <div className="flex flex-col">
-                                    <span className="leading-tight text-white text-xs">минут</span>
-                                    <span className="leading-tight text-white text-xs">на машине</span>
-                                </div>
-                            </div>
+                            <CarouselButtons total={data?.places?.length as number} next={nextSlide} prev={prevSlide} />
                         </div>
-                    </div>
-                    <CarouselButtons total={data?.places?.length as number} next={nextSlide} prev={prevSlide} />
-                </div>
-                <div className="aspect-[1.61/1] max-w-910 w-full -mr-70 -mb-120">
-                    <Carousel ref={carouselRef} dots={false} afterChange={(id) => setIndex(id)}>
-                        {data?.places?.map((place, id) => (
-                            <div key={id}>
-                                <img src={place?.image} alt={place?.title} className="w-full h-full object-cover" />
-                            </div>
-                        ))}
-                    </Carousel>
-                </div>
+                    </Col>
+                    <Col xl={12}>
+                        <div className="aspect-[1.61/1] w-full -mb-120">
+                            <Carousel ref={carouselRef} dots={false} afterChange={(id) => setIndex(id)}>
+                                {data?.places?.map((place, id) => (
+                                    <div key={id}>
+                                        <img src={place?.image} alt={place?.title} className="w-full h-full object-cover" />
+                                    </div>
+                                ))}
+                            </Carousel>
+                        </div>
+                    </Col>
+                </Row>
             </div>
         </>
     );

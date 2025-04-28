@@ -1,8 +1,8 @@
 import { useCarousel } from "@/shared/lib";
-import { OrientData } from "@/shared/model";
+import { OrientData, useOrientContext } from "@/shared/model";
 import { Button } from "@/shared/ui";
 import { CarouselButtons } from "@/shared/ui/arrowButton";
-import { Carousel } from "antd";
+import { Carousel, Col, Row } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
@@ -10,6 +10,7 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import "./ImprovementView.scss";
 
 export const ImprovementView = () => {
+    const { handleFormModal } = useOrientContext();
     const { carouselRef, nextSlide, prevSlide } = useCarousel();
     const [index, setIndex] = useState<number>(0);
     const [data, setData] = useState<OrientData["ru"]["improvement"] | null>(null);
@@ -27,7 +28,7 @@ export const ImprovementView = () => {
 
     return (
         <>
-            <div className="container pt-273 pb-218 bg-gray-900">
+            <div className="container pt-273 pb-218 bg-gray-900" id="improvement">
                 <div className="relative flex justify-center -mb-30 z-10">
                     <h2 className="h2 text-white text">{data?.title}</h2>
                     <img src="/improvement-kursiv.svg" alt="location" className="absolute top-2/4 -translate-y-2/4" />
@@ -36,7 +37,7 @@ export const ImprovementView = () => {
                     <img src={data?.image} className="w-full" />
                     <div className="flex flex-col gap-40 p-90 bg-[linear-gradient(147.21deg,_rgba(160,84,40,0.75)_19.59%,_rgba(58,30,15,0.75)_217.84%)] w-fit absolute top-100 right-0">
                         <p className="max-w-530 text-white -tracking-[0.03em]">{data?.description}</p>
-                        <Button>{data?.button}</Button>
+                        <Button onClick={handleFormModal}>{data?.button}</Button>
                     </div>
                 </div>
                 <div className="flex flex-col overflow-hidden w-[calc(100%_+_140px)] -mx-70 -mt-340">
@@ -53,26 +54,30 @@ export const ImprovementView = () => {
                     </ParallaxProvider>
                 </div>
             </div>
-            <div className="h-400 bg-orange container flex justify-between">
-                <div className="flex flex-col justify-between py-50">
-                    <div className="flex flex-col gap-12">
-                        <span className="text-yellow-100 uppercase leading-none">Благоустройство</span>
-                        <h4 className="max-w-420 text-[44px] uppercase text-white leading-tight">{data?.features?.[index]?.title}</h4>
+            <Row className="bg-orange">
+                <Col xl={12}>
+                    <div className="flex flex-col h-full justify-between py-50 font-display pl-70">
+                        <div className="flex flex-col gap-12">
+                            <span className="text-yellow-100 uppercase leading-none">Благоустройство</span>
+                            <h4 className="max-w-420 text-[44px] uppercase text-white leading-tight">{data?.features?.[index]?.title}</h4>
+                        </div>
+                        <CarouselButtons total={data?.features?.length as number} next={nextSlide} prev={prevSlide} color="text-gray-900" />
                     </div>
-                    <CarouselButtons total={data?.features?.length as number} next={nextSlide} prev={prevSlide} color="text-gray-900" />
-                </div>
-                <div className="w-710 h-500 -mr-70 -mt-100">
-                    <Carousel dots={false} ref={carouselRef} afterChange={(id) => setIndex(id)}>
-                        {data?.features?.map((feature, id) => (
-                            <div key={id}>
-                                <div className="w-710 h-500">
-                                    <img src={feature?.image} className="w-full h-full object-cover" />
+                </Col>
+                <Col xl={12} className="-mt-100">
+                    <div className="w-full">
+                        <Carousel dots={false} ref={carouselRef} afterChange={(id) => setIndex(id)}>
+                            {data?.features?.map((feature, id) => (
+                                <div key={id}>
+                                    <div>
+                                        <img src={feature?.image} className="w-full h-full object-contain" />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </Carousel>
-                </div>
-            </div>
+                            ))}
+                        </Carousel>
+                    </div>
+                </Col>
+            </Row>
             <Gallery data={data as OrientData["ru"]["improvement"]} />
         </>
     );

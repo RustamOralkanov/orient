@@ -5,7 +5,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = (props: ButtonProps) => {
     return (
-        <button {...props} className="custom-button">
+        <button {...props} className={["custom-button", props.disabled ? "opacity-50 cursor-not-allowed" : ""].join(" ")}>
             {props.children}
         </button>
     );

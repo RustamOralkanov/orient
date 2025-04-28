@@ -34,3 +34,7 @@ body {
     line-height: 110.00000000000001%;
     text-transform: uppercase;
 }
+
+.anticon {
+    color: white !important;
+}
