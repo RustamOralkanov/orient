@@ -5,7 +5,7 @@ import { CarouselButtons } from "@/shared/ui/arrowButton";
 import { Carousel, Col, Row } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
+import { Parallax } from "react-scroll-parallax";
 
 import "./ImprovementView.scss";
 
@@ -42,16 +42,14 @@ export const ImprovementView = () => {
                 </div>
                 <div className="flex flex-col overflow-hidden w-[calc(100%_+_140px)] -mx-70 -mt-340">
                     <h3 className="max-w-750 text-white uppercase text-[53px] leading-tight ml-180 relative z-10">{data?.info_title}</h3>
-                    <ParallaxProvider>
-                        <Parallax translateX={["100px", "-1500px"]} className="flex gap-240 -mt-125">
-                            {data?.infos?.map((info, id) => (
-                                <div key={id} className="flex flex-col gap-27 min-w-640">
-                                    <img src={info.image} className="w-640 h-460 object-cover" />
-                                    <p className="max-w-540 text-white leading-tight -tracking-[0.03em]">{info?.description}</p>
-                                </div>
-                            ))}
-                        </Parallax>
-                    </ParallaxProvider>
+                    <Parallax translateX={["100px", "-1500px"]} className="flex gap-240 -mt-125">
+                        {data?.infos?.map((info, id) => (
+                            <div key={id} className="flex flex-col gap-27 min-w-640">
+                                <img src={info.image} className="w-640 h-460 object-cover" />
+                                <p className="max-w-540 text-white leading-tight -tracking-[0.03em]">{info?.description}</p>
+                            </div>
+                        ))}
+                    </Parallax>
                 </div>
             </div>
             <Row className="bg-orange">

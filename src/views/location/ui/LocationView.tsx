@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { OrientData } from "@/shared/model";
-import { Button } from "@/shared/ui";
+import { Button, TextAnimation, TitleAnimation } from "@/shared/ui";
 import { CarouselButtons } from "@/shared/ui/arrowButton";
 import { Carousel, Col, Row } from "antd";
 import { useCarousel } from "@/shared/lib";
+import { motion } from "motion/react";
 
 export const LocationView = () => {
     const { carouselRef, nextSlide, prevSlide } = useCarousel();
@@ -26,16 +27,32 @@ export const LocationView = () => {
         <>
             <div className="container bg-orange pt-120" id="location">
                 <div className="relative flex justify-center">
-                    <h2 className="h2 text-white text">{data?.title}</h2>
-                    <img src="/location.svg" alt="location" className="absolute top-2/4 -translate-y-2/4" />
+                    <h2 className="h2 flex flex-col text-white leading-[1.1]">
+                        <TitleAnimation title={[data?.title || ""]} />
+                    </h2>
+                    <motion.img
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        viewport={{ once: true }}
+                        src="/location.svg"
+                        alt="location"
+                        className="absolute top-2/4 -translate-y-2/4"
+                    />
                 </div>
                 <div className="mt-133 -ml-70 -mr-70 w-[100%_-_140px] relative">
                     <img src="/map.svg" className="w-full" />
                     <div className="absolute left-0 bottom-0 bg-gray-900 pl-70 py-45 pr-50">
                         <div className="flex flex-col gap-40 max-w-420">
-                            <h4 className="text-2xl text-white uppercase -tracking-[0.05em]">{data?.subtitle}</h4>
-                            <p className="text-white">{data?.description}</p>
-                            <Button onClick={() => window.open(data?.link, "blank")}>{data?.button}</Button>
+                            <TextAnimation delay={0.1}>
+                                <h4 className="text-2xl text-white uppercase -tracking-[0.05em]">{data?.subtitle}</h4>
+                            </TextAnimation>
+                            <TextAnimation delay={0.3}>
+                                <p className="text-white">{data?.description}</p>
+                            </TextAnimation>
+                            <TextAnimation delay={0.6}>
+                                <Button onClick={() => window.open(data?.link, "blank")}>{data?.button}</Button>
+                            </TextAnimation>
                         </div>
                     </div>
                 </div>
@@ -43,7 +60,13 @@ export const LocationView = () => {
             <div className="bg-red py-60">
                 <Row>
                     <Col xl={12}>
-                        <div className="flex flex-col justify-between gap-117 pl-70  font-display">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.1, duration: 1 }}
+                            viewport={{ once: true }}
+                            className="flex flex-col justify-between gap-117 pl-70  font-display"
+                        >
                             <div className="flex flex-col gap-30">
                                 <h5 className="text-[44px] text-white leading-tight max-w-420 ">{data?.places?.[index]?.title}</h5>
                                 <div className="flex gap-56 items-center">
@@ -64,7 +87,7 @@ export const LocationView = () => {
                                 </div>
                             </div>
                             <CarouselButtons total={data?.places?.length as number} next={nextSlide} prev={prevSlide} />
-                        </div>
+                        </motion.div>
                     </Col>
                     <Col xl={12}>
                         <div className="aspect-[1.61/1] w-full -mb-120">

@@ -1,6 +1,6 @@
 import { MenuButton } from "@/entities/menu";
 import { OrientData, useOrientContext } from "@/shared/model";
-import { Button } from "@/shared/ui";
+import { Button, TextAnimation } from "@/shared/ui";
 import { motion } from "motion/react";
 
 type MainViewProps = Partial<OrientData["ru"]>;
@@ -25,11 +25,11 @@ export const MainView = (props: MainViewProps) => {
                 />
             </div>
             <div className="absolute w-[49%] right-0 bottom-0 h-690 overflow-clip">
-                <motion.img src="/main.png" alt="bg" className="object-cover" initial={{ y: 0 }} animate={{ y: -100 }} transition={{ duration: 4 }} />
+                <motion.img src="/main.png" alt="bg" className="h-790 w-full object-cover" initial={{ y: 0 }} animate={{ y: -100 }} transition={{ duration: 6 }} />
             </div>
             <div className="flex flex-col relative z-10 gap-107">
                 <div className="flex items-start justify-between">
-                    <img src="/logo.svg" alt="logo" />
+                    <img src="/logo.svg" alt="logo" className="h-96 w-auto object-cover" />
                     <div className="flex items-center gap-20">
                         <a href={`tel:${props?.phone}`} className="text-orange font-normal">
                             {props?.phone}
@@ -42,15 +42,25 @@ export const MainView = (props: MainViewProps) => {
                         <h1 className="font-neumann text-[63px] uppercase text-white leading-[1.1] max-w-620 flex flex-col">
                             {title?.map((row, id) => (
                                 <span key={id} className="overflow-hidden h-[70px]">
-                                    <motion.span initial={{ y: 70 }} whileInView={{ y: 0 }} transition={{ delay: 0.6 * (id * 0.5) }} className="block">
+                                    <motion.span
+                                        initial={{ rotate: 5, y: 75, opacity: 0 }}
+                                        whileInView={{ rotate: 0, y: 0, opacity: 1 }}
+                                        transition={{ delay: 0.3 * id, duration: 1.5, ease: [0, 0.71, 0.2, 1.01] }}
+                                        viewport={{ once: true }}
+                                        className="block"
+                                    >
                                         {row}
                                     </motion.span>
                                 </span>
                             ))}
                         </h1>
-                        <p className="text-[20px] uppercase text-white leading-[1.5] max-w-420 font-light">{props?.main?.subtitle}</p>
+                        <TextAnimation>
+                            <p className="text-[20px] uppercase text-white leading-[1.5] max-w-420 font-light">{props?.main?.subtitle}</p>
+                        </TextAnimation>
                     </div>
-                    <Button onClick={handleFormModal}>{props?.leave_request}</Button>
+                    <TextAnimation>
+                        <Button onClick={handleFormModal}>{props?.leave_request}</Button>
+                    </TextAnimation>
                 </div>
             </div>
         </div>

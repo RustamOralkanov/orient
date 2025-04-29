@@ -14,6 +14,7 @@ import { ParkingView } from "@/views/parking";
 import { ServiceView } from "@/views/service";
 import { Footer } from "@/widgets/footer";
 import { OrientProvider } from "@/shared/provider";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 export const App = () => {
     const [data, setData] = useState<OrientData["ru"] | null>(null);
@@ -30,19 +31,21 @@ export const App = () => {
     }, []);
 
     return (
-        <OrientProvider>
-            <MainView {...data} />
-            <AboutView />
-            <LocationView />
-            <ImprovementView />
-            <ArchitectureView />
-            <HallView />
-            <ParkingView />
-            <LayoutsView />
-            <CtaView />
-            <CompanyView />
-            <ServiceView {...data?.service} />
-            <Footer {...data?.footer} />
-        </OrientProvider>
+        <ParallaxProvider>
+            <OrientProvider>
+                <MainView {...data} />
+                <AboutView />
+                <LocationView />
+                <ImprovementView />
+                <ArchitectureView />
+                <HallView />
+                <ParkingView />
+                <LayoutsView />
+                <CtaView />
+                <CompanyView />
+                <ServiceView {...data?.service} />
+                <Footer {...data?.footer} />
+            </OrientProvider>
+        </ParallaxProvider>
     );
 };
