@@ -15,18 +15,18 @@
     transition: all 0.3s ease-in-out;
 
     &:after {
-        transition: all 0.3s ease-in-out;
+        transition: all 0.5s ease-in-out;
         content: "";
         position: absolute;
         bottom: -2px;
-        width: 70%;
+        width: 0%;
         height: 2px;
         background: #cc9a4f;
     }
 
     &:hover {
         &::after {
-            width: 100%;
+            width: 70%;
         }
     }
 }

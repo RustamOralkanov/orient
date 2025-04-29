@@ -36,7 +36,7 @@ export const ArchitectureView = () => {
                     <img src={data?.image} alt="image" className="pr-110" />
                 </div>
             </div>
-            <div className="relative mt-180">
+            <div className="relative z-10 mt-180">
                 <img src="/arc-balls.png" alt="balls" className="absolute -top-50 -left-70" />
                 <p className="-tracking-[0.03em] uppercase text-[20px] leading-normal max-w-420 ml-auto mr-110">{data?.description_3}</p>
             </div>

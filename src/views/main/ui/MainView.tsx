@@ -9,7 +9,6 @@ export const MainView = (props: MainViewProps) => {
     const { handleFormModal } = useOrientContext();
 
     const title = props?.main?.title.split(", ");
-    console.log(title);
 
     return (
         <div className="h-800 relative pt-30 px-70 overflow-hidden">

@@ -36,7 +36,7 @@ export const App = () => {
                 <MainView {...data} />
                 <AboutView />
                 <LocationView />
-                <ImprovementView />
+                <ImprovementView {...data?.improvement} />
                 <ArchitectureView />
                 <HallView />
                 <ParkingView />
