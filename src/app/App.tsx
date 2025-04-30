@@ -42,7 +42,7 @@ export const App = () => {
                 <ParkingView {...data?.parking} />
                 <LayoutsView {...data?.layouts} />
                 <CtaView />
-                <CompanyView />
+                <CompanyView {...data?.company} />
                 <ServiceView {...data?.service} />
                 <Footer {...data?.footer} />
             </OrientProvider>

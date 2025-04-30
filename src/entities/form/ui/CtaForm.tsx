@@ -14,6 +14,7 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
     const [form] = Form.useForm();
     const [data, setData] = useState<OrientData["ru"]["form"] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const { handleSuccess } = useOrientContext();
 
     const { isFormModal, handleFormModal } = useOrientContext();
 
@@ -83,7 +84,7 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
             .then((response) => {
                 console.log(response);
                 setIsLoading(false);
-
+                handleSuccess();
                 if (isFormModal) {
                     handleFormModal();
                 }
@@ -95,7 +96,7 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
     };
 
     return (
-        <Form form={form} onFinish={onFinish} className={["flex flex-col ", modal ? "gap-24" : "gap-35"].join(" ")}>
+        <Form form={form} onFinish={onFinish} className={["flex flex-col ", modal ? "gap-24 max-lg:!gap-12" : "gap-35 max-lg:gap-24"].join(" ")}>
             <Form.Item name="name" rules={[{ required: true, message: "Пожалуйста, заполните поле!" }]} className="!mb-0">
                 <input className="h-55 border-b-1 border-b-red w-full text-[20px] uppercase text-white outline-0" placeholder={data?.name} />
             </Form.Item>

@@ -40,11 +40,11 @@ const pages = [
 export const Menu = (props: DrawerProps) => {
     const { handleMenu } = useOrientContext();
     return (
-        <Drawer {...props} closeIcon={false} width={"100%"} classNames={{ content: "p-70 !bg-orange !relative", body: "!p-0" }}>
+        <Drawer {...props} closeIcon={false} width={"100%"} classNames={{ content: "p-70 !bg-orange !relative max-lg:px-15 max-lg:pt-120", body: "!p-0" }}>
             <div className="h-full">
-                <img src="/logo.svg" className="absolute left-2/4 -translate-x-2/4 z-50" />
+                <img src="/logo.svg" className="absolute left-2/4 -translate-x-2/4 z-50 max-lg:h-50 max-lg:left-15 max-lg:top-40 max-lg:-translate-x-0" />
                 <button
-                    className="absolute z top-30 right-70 px-20 h-50 rounded-full border-1 border-white text-white flex items-center gap-10 uppercase text-sm font-medium cursor-pointer"
+                    className="absolute z top-30 right-70 px-20 h-50 rounded-full border-1 border-white text-white flex items-center gap-10 uppercase text-sm font-medium cursor-pointer max-lg:right-15"
                     style={{ zIndex: 9999 }}
                     onClick={handleMenu}
                 >
@@ -55,13 +55,13 @@ export const Menu = (props: DrawerProps) => {
                     Меню
                 </button>
                 <Row className="!h-full">
-                    <Col xl={12} className="!h-full">
+                    <Col xl={12} lg={24} md={24} sm={24} xs={24} className="!h-full">
                         <div className="flex flex-col justify-between font-display h-full w-fit">
                             <div className="flex flex-col font-display">
                                 {pages?.map((page) => (
                                     <span
                                         key={page?.alias}
-                                        className="uppercase text-yellow-100 text-[32px] cursor-pointer h-58 flex items-center"
+                                        className="uppercase text-yellow-100 text-[32px] cursor-pointer h-58 flex items-center max-lg:text-2xl max-lg:h-38"
                                         onClick={() => {
                                             scrollToContent(page?.alias);
                                             handleMenu();
@@ -107,7 +107,7 @@ export const Menu = (props: DrawerProps) => {
                             </div>
                         </div>
                     </Col>
-                    <Col xl={12} style={{ position: "unset" }}>
+                    <Col xl={12} lg={0} md={0} sm={0} xs={0} style={{ position: "unset" }}>
                         <div className="absolute flex flex-col gap-20 h-full top-0 right-0 w-2/4 overflow-hidden">
                             <img src="/menu-bg.webp" className="w-full h-full object-center object-cover" />
                         </div>

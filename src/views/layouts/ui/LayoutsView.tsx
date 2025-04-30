@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCarousel, useResponsive } from "@/shared/lib";
 import { OrientData } from "@/shared/model";
 import { CarouselButtons } from "@/shared/ui/arrowButton";
@@ -8,11 +8,53 @@ import { motion } from "motion/react";
 
 type LayoutsViewProps = Partial<OrientData["ru"]["layouts"]>;
 
+interface Flats {
+    flats: {
+        id: number;
+        floor: number;
+        size: number;
+        price: number;
+        rooms: number;
+        block_title: string;
+        plans: [
+            {
+                id: number;
+                image: string;
+                tur_3d: string;
+            },
+            {
+                id: number;
+                image: string;
+                tur_3d: string;
+            }
+        ];
+    }[];
+    // добавь сюда другие поля по необходимости
+}
+
 export const LayoutsView = (props: LayoutsViewProps) => {
     const { isMobile } = useResponsive();
     const { carouselRef, nextSlide, prevSlide } = useCarousel();
+    const [flats, setFlats] = useState<Flats | undefined>(undefined);
     const [index, setIndex] = useState<number>(0);
     const [rooms, setRooms] = useState<number | null>(null);
+
+    useEffect(() => {
+        const fetchFlats = async () => {
+            try {
+                const response = await fetch("https://api.ab-capital.kz/api/guest/flats?project_alias=orient");
+                if (!response.ok) {
+                    throw new Error(`Ошибка: ${response.status}`);
+                }
+                const json = await response.json();
+                setFlats(json.data);
+            } catch (err: unknown) {
+                console.error(err);
+            }
+        };
+
+        fetchFlats();
+    }, []);
 
     const Rooms = () => (
         <div className="flex flex-col gap-16 max-lg:mt-50">
@@ -94,59 +136,57 @@ export const LayoutsView = (props: LayoutsViewProps) => {
                     </div>
                 </div>
             </div> */}
-            <div className="bg-orange -mx-70 py-50 mt-194 max-lg:mt-50 max-lg:-mx-15 max-lg:py-0 max-lg:bg-yellow-100">
-                <Row className="max-lg:!flex-col">
-                    <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-                        <div className="-ml-70 -mt-150 -mb-50 max-lg:ml-0 max-lg:mt-0">
-                            <Carousel ref={carouselRef} dots={false} beforeChange={(_, id) => setIndex(id)}>
-                                {props?.flats?.map((info, id) => (
-                                    <div key={id}>
-                                        <div>
-                                            <img
-                                                src={info?.image}
-                                                alt={info?.title}
-                                                className="w-full h-500 object-cover max-lg:max-h-380  max-lg:object-contain  max-lg:bg-white"
-                                            />
+            {flats?.flats && flats?.flats?.length > 0 && (
+                <div className="bg-orange -mx-70 py-50 mt-194 max-lg:mt-50 max-lg:-mx-15 max-lg:py-0 max-lg:bg-yellow-100">
+                    <Row className="max-lg:!flex-col">
+                        <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+                            <div className="-ml-70 -mt-150 -mb-50 max-lg:ml-0 max-lg:mt-0">
+                                <Carousel ref={carouselRef} dots={false} beforeChange={(_, id) => setIndex(id)}>
+                                    {flats?.flats?.map((info, id) => (
+                                        <div key={id}>
+                                            <div>
+                                                <img src={info?.plans?.[0]?.image || "/3-room-88.png"} className="w-full h-500 object-contain bg-white max-lg:max-h-380" />
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
-                            </Carousel>
-                        </div>
-                    </Col>
-                    <Col xl={{ offset: 4, span: 8 }} lg={{ offset: 0, span: 24 }} md={{ offset: 0, span: 24 }} sm={{ offset: 0, span: 24 }} xs={{ offset: 0, span: 24 }}>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ delay: 0.1, duration: 1 }}
-                            viewport={{ once: true }}
-                            className="flex flex-col justify-between font-display h-full max-lg:bg-orange  max-lg:gap-30 max-lg:p-24 max-lg:mx-15 max-lg:-mt-30"
-                        >
-                            <div className="flex flex-col gap-12">
-                                <span className="text-white text-[32px] uppercase font-semibold leading-none">{props?.flats?.[index]?.title}</span>
-                                <span className="text-yellow-100 text-[20px] uppercase opacity-70 leading-none font-light">{props?.flats?.[index]?.subtitle}</span>
+                                    ))}
+                                </Carousel>
                             </div>
-                            <div className="flex flex-col gap-12">
-                                <span className="text-yellow-100/50 text-sm font-leight leading-none">Площадь, м2</span>
-                                <span className="text-white text-[64px] uppercase leading-none font-light">{props?.flats?.[index]?.area}</span>
-                            </div>
-                            <div className="flex items-center gap-12">
-                                <div className="p-10 bg-white text-red text-sm">Вид на горы</div>
-                                <div className="p-10 bg-white text-red text-sm">Скидка 10%</div>
-                            </div>
-                            <div className="absolute -bottom-150">
-                                <CarouselButtons
-                                    total={props?.flats?.length as number}
-                                    next={nextSlide}
-                                    prev={prevSlide}
-                                    color="text-red"
-                                    buttonClassNames={"!border-gray-900 !text-gray-900 hover:!bg-orange  hover:!border-orange hover:!text-white"}
-                                    counterClassNames="!text-gray-900"
-                                />
-                            </div>
-                        </motion.div>
-                    </Col>
-                </Row>
-            </div>
+                        </Col>
+                        <Col xl={{ offset: 4, span: 8 }} lg={{ offset: 0, span: 24 }} md={{ offset: 0, span: 24 }} sm={{ offset: 0, span: 24 }} xs={{ offset: 0, span: 24 }}>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                transition={{ delay: 0.1, duration: 1 }}
+                                viewport={{ once: true }}
+                                className="flex flex-col justify-between font-display h-full max-lg:bg-orange  max-lg:gap-30 max-lg:p-24 max-lg:mx-15 max-lg:-mt-30"
+                            >
+                                <div className="flex flex-col gap-12">
+                                    <span className="text-white text-[32px] uppercase font-semibold leading-none">{flats?.flats?.[index]?.rooms}-комнатная</span>
+                                    {/* <span className="text-yellow-100 text-[20px] uppercase opacity-70 leading-none font-light">{flats?.flats?.[index]?.subtitle}</span> */}
+                                </div>
+                                <div className="flex flex-col gap-12">
+                                    <span className="text-yellow-100/50 text-sm font-leight leading-none">Площадь, м2</span>
+                                    <span className="text-white text-[64px] uppercase leading-none font-light">{props?.flats?.[index]?.area}</span>
+                                </div>
+                                <div className="flex items-center gap-12">
+                                    <div className="p-10 bg-white text-red text-sm">Вид на горы</div>
+                                    <div className="p-10 bg-white text-red text-sm">Скидка 10%</div>
+                                </div>
+                                <div className="absolute -bottom-150">
+                                    <CarouselButtons
+                                        total={props?.flats?.length as number}
+                                        next={nextSlide}
+                                        prev={prevSlide}
+                                        color="text-red"
+                                        buttonClassNames={"!border-gray-900 !text-gray-900 hover:!bg-orange  hover:!border-orange hover:!text-white"}
+                                        counterClassNames="!text-gray-900"
+                                    />
+                                </div>
+                            </motion.div>
+                        </Col>
+                    </Row>
+                </div>
+            )}
         </div>
     );
 };
