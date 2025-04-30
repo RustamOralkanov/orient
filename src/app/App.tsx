@@ -34,13 +34,13 @@ export const App = () => {
         <ParallaxProvider>
             <OrientProvider>
                 <MainView {...data} />
-                <AboutView />
-                <LocationView />
+                <AboutView {...data?.about} />
+                <LocationView {...data?.location} />
                 <ImprovementView {...data?.improvement} />
-                <ArchitectureView />
-                <HallView />
-                <ParkingView />
-                <LayoutsView />
+                <ArchitectureView {...data?.architecture} />
+                <HallView {...data?.hall} />
+                <ParkingView {...data?.parking} />
+                <LayoutsView {...data?.layouts} />
                 <CtaView />
                 <CompanyView />
                 <ServiceView {...data?.service} />

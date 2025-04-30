@@ -1,63 +1,66 @@
-import { useCarousel } from "@/shared/lib";
+import { useState } from "react";
+import { useCarousel, useResponsive } from "@/shared/lib";
 import { OrientData } from "@/shared/model";
 import { CarouselButtons } from "@/shared/ui/arrowButton";
-import { Carousel } from "antd";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Carousel, Col, Row } from "antd";
+import { TextAnimation, TitleAnimation } from "@/shared/ui";
+import { motion } from "motion/react";
 
-export const LayoutsView = () => {
+type LayoutsViewProps = Partial<OrientData["ru"]["layouts"]>;
+
+export const LayoutsView = (props: LayoutsViewProps) => {
+    const { isMobile } = useResponsive();
     const { carouselRef, nextSlide, prevSlide } = useCarousel();
     const [index, setIndex] = useState<number>(0);
     const [rooms, setRooms] = useState<number | null>(null);
-    const [data, setData] = useState<OrientData["ru"]["layouts"] | null>(null);
 
-    useEffect(() => {
-        axios
-            .get("/orient.json")
-            .then((response) => {
-                setData(response.data.ru.layouts);
-            })
-            .catch((error) => {
-                console.error("Ошибка при загрузке JSON:", error);
-            });
-    }, []);
+    const Rooms = () => (
+        <div className="flex flex-col gap-16 max-lg:mt-50">
+            <span className="text-[16px] -tracking-[0.02em]">Комнатность</span>
+            <div className="flex items-center gap-10">
+                {[...Array(4)].map((_, id) => (
+                    <button
+                        key={id}
+                        onClick={() => setRooms(id + 1)}
+                        className={[
+                            "cursor-pointer w-60 h-60 rounded-full border-1 border-gray-900  text-32 leading-none text-[32px] font-light transition-all duration-300",
+                            rooms === id + 1 ? "text-white bg-orange" : "text-gray-900",
+                        ].join(" ")}
+                    >
+                        {id + 1 === 4 ? id + 1 + "+" : id + 1}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
 
     return (
-        <div className="container pt-170" id="layout">
+        <div className="container pt-170 max-lg:pt-101" id="layout">
             <div className="flex justify-between items-end">
                 <div className="flex flex-col gap-24">
                     <div className="relative w-fit">
-                        <img src="/layouts-kursiv.svg" alt="kursiv" className="absolute bottom-40 -left-45" />
-                        <h2 className="h2 text-gray-900">{data?.title}</h2>
+                        <img src="/layouts-kursiv.svg" alt="kursiv" className="absolute bottom-40 -left-45 max-lg:h-48 max-lg:-left-10 max-lg:max-lg:bottom-26" />
+                        <h2 className="h2 text-gray-900 flex flex-col leading-[1.1]">
+                            <TitleAnimation title={[props?.title || ""]} />
+                        </h2>
                     </div>
-                    <h4 className="text-2xl uppercase font-light max-w-610 leading-tight">{data?.subtitle}</h4>
+                    <h4 className="text-2xl uppercase font-light max-w-610 leading-tight max-lg:text-[16px]">
+                        <TextAnimation>{props?.subtitle}</TextAnimation>
+                    </h4>
                 </div>
-                <div className="flex flex-col gap-16">
-                    <span className="text-[16px] -tracking-[0.02em]">Комнатность</span>
-                    <div className="flex items-center gap-10">
-                        {[...Array(4)].map((_, id) => (
-                            <button
-                                key={id}
-                                onClick={() => setRooms(id + 1)}
-                                className={[
-                                    "cursor-pointer w-60 h-60 rounded-full border-1 border-gray-900  text-32 leading-none text-[32px] font-light transition-all duration-300",
-                                    rooms === id + 1 ? "text-white bg-orange" : "text-gray-900",
-                                ].join(" ")}
-                            >
-                                {id + 1 === 4 ? id + 1 + "+" : id + 1}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                {!isMobile && <Rooms />}
             </div>
-            <div className="relative aspect-[2.165/1] mt-50 -mx-70">
-                <img src={data?.image} className="w-full h-full brightness-50" />
-                <p className="absolute max-w-410 text-sm text-white -tracking-[0.03em] z-10 top-100 right-70 leading-normal">{data?.description}</p>
+            <div className="relative aspect-[2.165/1] mt-50 -mx-70 max-lg:min-h-190 max-lg:aspect-[unset] max-lg:mt-24 max-lg:-mx-15">
+                <img src={props?.image} className="w-full h-full brightness-50" />
+                <p className="absolute max-w-410 text-sm text-white -tracking-[0.03em] z-10 top-100 right-70 leading-normal max-lg:static max-lg:text-gray-900 max-lg:max-w-full max-lg:px-15 max-lg:mt-50 max-lg:text-sm">
+                    {props?.description}
+                </p>
             </div>
-            <div className="bg-orange py-50 -mt-180 -mr-70 flex relative z-10">
+            {isMobile && <Rooms />}
+            {/* <div className="bg-orange py-50 -mt-180 -mr-70 flex relative z-10">
                 <div className="w-[calc(50%_-_80px)] -mt-50 -mb-167">
                     <Carousel ref={carouselRef} dots={false} beforeChange={(_, id) => setIndex(id)}>
-                        {data?.flats?.map((info, id) => (
+                        {props?.flats?.map((info, id) => (
                             <div key={id}>
                                 <div>
                                     <img src={info?.image} alt={info?.title} className="w-full h-470 object-contain bg-white" />
@@ -68,12 +71,12 @@ export const LayoutsView = () => {
                 </div>
                 <div className="flex flex-col justify-between ml-90 relative">
                     <div className="flex flex-col gap-12">
-                        <span className="text-white text-[32px] uppercase font-semibold leading-none">{data?.flats?.[index]?.title}</span>
-                        <span className="text-yellow-100 text-[20px] uppercase opacity-70 leading-none font-light">{data?.flats?.[index]?.subtitle}</span>
+                        <span className="text-white text-[32px] uppercase font-semibold leading-none">{props?.flats?.[index]?.title}</span>
+                        <span className="text-yellow-100 text-[20px] uppercase opacity-70 leading-none font-light">{props?.flats?.[index]?.subtitle}</span>
                     </div>
                     <div className="flex flex-col gap-12">
                         <span className="text-yellow-100 text-sm font-leight leading-none">Площадь, м2</span>
-                        <span className="text-white text-[64px] uppercase leading-none font-light">{data?.flats?.[index]?.area}</span>
+                        <span className="text-white text-[64px] uppercase leading-none font-light">{props?.flats?.[index]?.area}</span>
                     </div>
                     <div className="flex items-center gap-12">
                         <div className="p-10 bg-white text-red text-sm">Вид на горы</div>
@@ -81,7 +84,7 @@ export const LayoutsView = () => {
                     </div>
                     <div className="absolute -bottom-150">
                         <CarouselButtons
-                            total={data?.flats?.length as number}
+                            total={props?.flats?.length as number}
                             next={nextSlide}
                             prev={prevSlide}
                             color="text-red"
@@ -90,6 +93,59 @@ export const LayoutsView = () => {
                         />
                     </div>
                 </div>
+            </div> */}
+            <div className="bg-orange -mx-70 py-50 mt-194 max-lg:mt-50 max-lg:-mx-15 max-lg:py-0 max-lg:bg-yellow-100">
+                <Row className="max-lg:!flex-col">
+                    <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+                        <div className="-ml-70 -mt-150 -mb-50 max-lg:ml-0 max-lg:mt-0">
+                            <Carousel ref={carouselRef} dots={false} beforeChange={(_, id) => setIndex(id)}>
+                                {props?.flats?.map((info, id) => (
+                                    <div key={id}>
+                                        <div>
+                                            <img
+                                                src={info?.image}
+                                                alt={info?.title}
+                                                className="w-full h-500 object-cover max-lg:max-h-380  max-lg:object-contain  max-lg:bg-white"
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </Carousel>
+                        </div>
+                    </Col>
+                    <Col xl={{ offset: 4, span: 8 }} lg={{ offset: 0, span: 24 }} md={{ offset: 0, span: 24 }} sm={{ offset: 0, span: 24 }} xs={{ offset: 0, span: 24 }}>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.1, duration: 1 }}
+                            viewport={{ once: true }}
+                            className="flex flex-col justify-between font-display h-full max-lg:bg-orange  max-lg:gap-30 max-lg:p-24 max-lg:mx-15 max-lg:-mt-30"
+                        >
+                            <div className="flex flex-col gap-12">
+                                <span className="text-white text-[32px] uppercase font-semibold leading-none">{props?.flats?.[index]?.title}</span>
+                                <span className="text-yellow-100 text-[20px] uppercase opacity-70 leading-none font-light">{props?.flats?.[index]?.subtitle}</span>
+                            </div>
+                            <div className="flex flex-col gap-12">
+                                <span className="text-yellow-100/50 text-sm font-leight leading-none">Площадь, м2</span>
+                                <span className="text-white text-[64px] uppercase leading-none font-light">{props?.flats?.[index]?.area}</span>
+                            </div>
+                            <div className="flex items-center gap-12">
+                                <div className="p-10 bg-white text-red text-sm">Вид на горы</div>
+                                <div className="p-10 bg-white text-red text-sm">Скидка 10%</div>
+                            </div>
+                            <div className="absolute -bottom-150">
+                                <CarouselButtons
+                                    total={props?.flats?.length as number}
+                                    next={nextSlide}
+                                    prev={prevSlide}
+                                    color="text-red"
+                                    buttonClassNames={"!border-gray-900 !text-gray-900 hover:!bg-orange  hover:!border-orange hover:!text-white"}
+                                    counterClassNames="!text-gray-900"
+                                />
+                            </div>
+                        </motion.div>
+                    </Col>
+                </Row>
             </div>
         </div>
     );

@@ -29,7 +29,7 @@ export const CarouselButtons: React.FC<CarouselButtonsProps> = (props) => {
     }, [props.total]);
 
     return (
-        <div key={props.total}>
+        <div key={props.total} className="max-lg:hidden">
             <Flex align="center" justify={props.justifyBetween ? "space-between" : "flex-start"} gap={12}>
                 <Flex align="center" gap={12}>
                     <button

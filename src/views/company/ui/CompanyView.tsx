@@ -21,7 +21,7 @@ export const CompanyView = () => {
 
     return (
         <div className="bg-gray-900 mt-128 relative" id="company">
-            <img src="/freepik__elegant-alleys-with-decorative-plants-lots-of-gree__21438.png" className="absolute h-full w-544 right-0 top-0 brightness-30 opacity-50" />
+            <img src="/freepik__elegant-alleys-with-decorative-plants-lots-of-gree__21438.webp" className="absolute h-full w-544 right-0 top-0 brightness-30 opacity-50" />
             <div className="container pt-90 relative z-10">
                 <div className="relative w-fit mx-auto">
                     <h2 className="text-white uppercase text-[218px] leading-none text-center">AB CAPITAL</h2>

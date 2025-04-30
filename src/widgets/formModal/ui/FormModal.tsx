@@ -21,7 +21,7 @@ export const FormModal = (props: ModalProps) => {
     return (
         <Modal {...props} destroyOnClose centered footer={null} classNames={{ content: "!rounded-[0] !p-0" }} width={480} zIndex={99}>
             <div className="flex flex-col">
-                <img src="/птичка.png" className="w-full h-240 object-cover" />
+                <img src="/птичка.webp" className="w-full h-240 object-cover" />
                 <div className="flex flex-col gap-40 bg-orange p-36">
                     <div className="flex flex-col gap-12">
                         <h4 className="uppercase text-[32px] -tracking-[0.01em] text-white font-light leading-tight font-display">{data?.title}</h4>

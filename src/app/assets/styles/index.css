@@ -37,3 +37,16 @@ body {
 .anticon {
     color: white !important;
 }
+
+@media (max-width: 1024px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .h2 {
+        font-size: 36px;
+    }
+}

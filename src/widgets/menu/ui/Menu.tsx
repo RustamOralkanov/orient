@@ -109,7 +109,7 @@ export const Menu = (props: DrawerProps) => {
                     </Col>
                     <Col xl={12} style={{ position: "unset" }}>
                         <div className="absolute flex flex-col gap-20 h-full top-0 right-0 w-2/4 overflow-hidden">
-                            <img src="/menu-bg.png" className="w-full h-full object-center object-cover" />
+                            <img src="/menu-bg.webp" className="w-full h-full object-center object-cover" />
                         </div>
                     </Col>
                 </Row>
