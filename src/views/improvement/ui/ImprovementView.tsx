@@ -1,7 +1,7 @@
 import { useCarousel, useResponsive } from "@/shared/lib";
 import { OrientData, useOrientContext } from "@/shared/model";
 import { Button, TextAnimation, TitleAnimation } from "@/shared/ui";
-import { CarouselButtons } from "@/shared/ui/arrowButton";
+import { CarouselButtons, MobileCarouselButtons } from "@/shared/ui/arrowButton";
 import { Carousel, Col, Row } from "antd";
 import { useState } from "react";
 import { motion } from "motion/react";
@@ -98,6 +98,7 @@ export const ImprovementView = (props: ImprovementViewProps) => {
                                     </div>
                                 ))}
                             </Carousel>
+                            <MobileCarouselButtons next={nextSlide} prev={prevSlide} />
                         </div>
                     </Col>
                 </Row>
