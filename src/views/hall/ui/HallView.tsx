@@ -2,7 +2,7 @@ import { Carousel, Col, Row } from "antd";
 import { useState } from "react";
 import { useCarousel } from "@/shared/lib";
 import { OrientData } from "@/shared/model";
-import { CarouselButtons } from "@/shared/ui/arrowButton";
+import { CarouselButtons, MobileCarouselButtons } from "@/shared/ui/arrowButton";
 import { TextAnimation, TitleAnimation } from "@/shared/ui";
 
 type HallViewProps = Partial<OrientData["ru"]["hall"]>;
@@ -63,6 +63,7 @@ export const HallView = (props: HallViewProps) => {
                                     </div>
                                 ))}
                             </Carousel>
+                            <MobileCarouselButtons next={nextSlide} prev={prevSlide} />
                         </div>
                     </Col>
                 </Row>

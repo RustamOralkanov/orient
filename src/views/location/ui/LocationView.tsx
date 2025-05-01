@@ -2,7 +2,7 @@ import { Carousel, Col, Row } from "antd";
 import { useState } from "react";
 import { OrientData } from "@/shared/model";
 import { Button, TextAnimation, TitleAnimation } from "@/shared/ui";
-import { CarouselButtons } from "@/shared/ui/arrowButton";
+import { CarouselButtons, MobileCarouselButtons } from "@/shared/ui/arrowButton";
 import { useCarousel } from "@/shared/lib";
 import { motion } from "motion/react";
 
@@ -79,7 +79,7 @@ export const LocationView = (props: LocationViewProps) => {
                         </motion.div>
                     </Col>
                     <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-                        <div className="aspect-[1.61/1] w-full -mb-120 max-lg:mb-0">
+                        <div className="aspect-[1.61/1] w-full -mb-120 max-lg:mb-0 max-lg:relative">
                             <Carousel ref={carouselRef} dots={false} afterChange={(id) => setIndex(id)}>
                                 {props?.places?.map((place, id) => (
                                     <div key={id}>
@@ -87,6 +87,7 @@ export const LocationView = (props: LocationViewProps) => {
                                     </div>
                                 ))}
                             </Carousel>
+                            <MobileCarouselButtons next={nextSlide} prev={prevSlide} />
                         </div>
                     </Col>
                 </Row>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCarousel, useResponsive } from "@/shared/lib";
 import { OrientData } from "@/shared/model";
-import { CarouselButtons } from "@/shared/ui/arrowButton";
+import { CarouselButtons, MobileCarouselButtons } from "@/shared/ui/arrowButton";
 import { Carousel, Col, Row } from "antd";
 import { TextAnimation, TitleAnimation } from "@/shared/ui";
 import { motion } from "motion/react";
@@ -150,6 +150,7 @@ export const LayoutsView = (props: LayoutsViewProps) => {
                                         </div>
                                     ))}
                                 </Carousel>
+                                <MobileCarouselButtons next={nextSlide} prev={prevSlide} />
                             </div>
                         </Col>
                         <Col xl={{ offset: 4, span: 8 }} lg={{ offset: 0, span: 24 }} md={{ offset: 0, span: 24 }} sm={{ offset: 0, span: 24 }} xs={{ offset: 0, span: 24 }}>

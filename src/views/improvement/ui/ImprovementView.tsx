@@ -7,8 +7,6 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Parallax } from "react-scroll-parallax";
 
-import "./ImprovementView.scss";
-
 type ImprovementViewProps = Partial<OrientData["ru"]["improvement"]>;
 
 export const ImprovementView = (props: ImprovementViewProps) => {
@@ -56,17 +54,21 @@ export const ImprovementView = (props: ImprovementViewProps) => {
                             {props?.infos?.map((info, id) => (
                                 <div key={id}>
                                     <div className="flex flex-col gap-27 min-w-640 max-lg:min-w-300 max-lg:max-w-330 max-lg:pr-30">
-                                        <img src={info.image} className="w-640 h-460 object-cover max-lg:w-300 max-lg:h-220" />
+                                        <video autoPlay playsInline muted loop>
+                                            <source src={info?.image} />
+                                        </video>
                                         <p className="max-w-540 text-white leading-tight -tracking-[0.03em] max-lg:text-sm">{info?.description}</p>
                                     </div>
                                 </div>
                             ))}
                         </Carousel>
                     ) : (
-                        <Parallax translateX={["100px", "-1500px"]} className="flex gap-240 -mt-125">
+                        <Parallax translateX={["800px", "-1000px"]} className="flex gap-240 -mt-125">
                             {props?.infos?.map((info, id) => (
                                 <div key={id} className="flex flex-col gap-27 min-w-640 max-lg:min-w-300">
-                                    <img src={info.image} className="w-640 h-460 object-cover max-lg:w-300 max-lg:h-220" />
+                                    <video autoPlay playsInline muted loop>
+                                        <source src={info?.image} />
+                                    </video>
                                     <p className="max-w-540 text-white leading-tight -tracking-[0.03em] max-lg:text-sm">{info?.description}</p>
                                 </div>
                             ))}

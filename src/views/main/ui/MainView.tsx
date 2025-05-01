@@ -25,7 +25,11 @@ export const MainView = (props: MainViewProps) => {
                     className="-z-10 w-full h-full object-cover absolute top-0 left-0"
                 />
             </div>
-            <div className="absolute w-[49%] right-0 bottom-0 h-690 overflow-clip max-lg:static max-lg:w-[calc(100%_+_40px)] max-lg:-mx-20">
+            <div className="absolute w-[49%] right-0 bottom-0 h-690 overflow-clip max-lg:relative max-lg:w-[calc(100%_+_40px)] max-lg:-mx-20">
+                <div className="absolute top-24 left-24 uppercase text-white text-[16px] z-10 bg-[linear-gradient(90deg,_#A05428_0%,_#3A1E0F_100%)] h-40 rounded-full flex items-center gap-8 font-semibold pr-20 pl-4 leading-[1.1]">
+                    <img src="/comfort-plus.svg" className="w-32 h-32 object-contain" />
+                    комфорт +
+                </div>
                 <motion.img
                     src="/main.webp"
                     alt="bg"
