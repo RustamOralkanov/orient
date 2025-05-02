@@ -11,7 +11,7 @@ export const Success = () => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
             exit={{ opacity: 0 }}
-            className="w-full h-dvh fixed top-0 left-0 z-[9999] bg-yellow-100"
+            className="success w-full h-dvh fixed top-0 left-0 z-[9999] bg-yellow-100"
             id="callback-success"
         >
             <Row className="h-full">
