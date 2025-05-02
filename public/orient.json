@@ -93,20 +93,33 @@
                     "title": "WorkOut-зоны"
                 },
                 {
-                    "image": "/imp-feat-1.webp",
-                    "title": "WorkOut-зоны"
+                    "image": "/improve-1asf.webp",
+                    "title": "места для отдыха и досуга"
                 },
                 {
-                    "image": "/imp-feat-1.webp",
-                    "title": "WorkOut-зоны"
+                    "image": "/Rectangle 40.webp",
+                    "title": "видеонаблюдение 24/7 "
+                },
+                {
+                    "image": "/Rectangle 41.webp",
+                    "title": "двор без машин"
+                },
+                {
+                    "image": "/Rectangle 42.webp",
+                    "title": "въезд через КПП"
+                },
+                {
+                    "image": "/Rectangle 43.webp",
+                    "title": "уютное озеленение"
                 }
             ],
             "gallery": [
-                "https://picsum.photos/id/1015/600/400",
-                "https://picsum.photos/id/1025/600/400",
-                "https://picsum.photos/id/1035/600/400",
-                "https://picsum.photos/id/1045/600/400",
-                "https://picsum.photos/id/1055/600/400"
+                "/e5b4f827ef863d462d5fda1f3ccfa27039556d92.webp",
+                "/3d87b61b1caae305c3fdacf8be01b71a19b1b8c0.webp",
+                "/a554ac92035171a9ea2610dd00edf607449cd416 (1).webp",
+                "/958683eccc44d9ecd4977658e2558501e31207c7.webp",
+                "/c9b3af798b36cd6efddca42ba5904be64795fb36 (1).webp",
+                "/7260b9e46238183c2a305fe05f89311cc609a133.webp"
             ]
         },
         "architecture": {
@@ -121,12 +134,16 @@
                     "image": "/arc-info-1.webp"
                 },
                 {
-                    "title": "Места под кондиционеры 1",
-                    "image": "/arc-info-1.webp"
+                    "title": "Фиброцементные панели",
+                    "image": "/image (3).webp"
                 },
                 {
-                    "title": "Места под кондиционеры 2",
-                    "image": "/arc-info-1.webp"
+                    "title": "панорамные окна",
+                    "image": "/Rectangle 46.webp"
+                },
+                {
+                    "title": "французские балконы",
+                    "image": "/Rectangle 47.webp"
                 }
             ]
         },
@@ -143,12 +160,16 @@
                     "image": "/hall-info-1.webp"
                 },
                 {
-                    "title": "Колясочные 1",
-                    "image": "/hall-info-1.webp"
+                    "title": "FACE ID",
+                    "image": "/Rectangle 48.webp"
                 },
                 {
-                    "title": "Колясочные 2",
-                    "image": "/hall-info-1.webp"
+                    "title": "SMART-замки",
+                    "image": "/image (4).webp"
+                },
+                {
+                    "title": "Бесшумные лифты",
+                    "image": "/image (5).webp"
                 }
             ]
         },
@@ -165,14 +186,19 @@
                     "image": "/188ffefad37fcf7493622479a8fac76003745b2c.webp"
                 },
                 {
-                    "title": "SMART-паркинг 1",
-                    "subtitle": "Въезд по системе считывания номеров",
-                    "image": "/188ffefad37fcf7493622479a8fac76003745b2c.webp"
+                    "title": "зоны хранения велосипедов",
+                    "subtitle": "",
+                    "image": "/image (6).webp"
                 },
                 {
-                    "title": "SMART-паркинг 2",
-                    "subtitle": "Въезд по системе считывания номеров",
-                    "image": "/188ffefad37fcf7493622479a8fac76003745b2c.webp"
+                    "title": "корзина для покупок",
+                    "subtitle": "",
+                    "image": "/333a5f621cef20fdbf74ff9c97c3d0b3c4521d9b.webp"
+                },
+                {
+                    "title": "доступ на лифте",
+                    "subtitle": "",
+                    "image": "/5fe4546c30d4f74a4e392e1049755503f7e51b51.webp"
                 }
             ]
         },

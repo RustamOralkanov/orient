@@ -68,7 +68,7 @@ export const ArchitectureView = (props: ArchitectureViewProps) => {
                         >
                             <div className="flex flex-col gap-12">
                                 <span className="text-yellow-100 opacity-75 uppercase leading-none">Архитектура</span>
-                                <span className="text-white text-[32px] max-w-420 font-semibold max-lg:text-2xl">{props?.infos?.[index]?.title}</span>
+                                <span className="text-white text-[32px] max-w-420 font-semibold max-lg:text-2xl uppercase">{props?.infos?.[index]?.title}</span>
                             </div>
                             <CarouselButtons total={props?.infos?.length as number} next={nextSlide} prev={prevSlide} color="text-gray-900" />
                         </motion.div>

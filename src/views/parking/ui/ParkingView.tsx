@@ -73,7 +73,7 @@ export const ParkingView = (props: ParkingViewProps) => {
                         >
                             <div className="flex flex-col">
                                 <span className="text-gray-900 text-sm uppercase opacity-50">Паркинг</span>
-                                <span className="text-gray-900 text-[44px] uppercase font-semibold max-lg:text-2xl">{props?.infos?.[index]?.title}</span>
+                                <span className="text-gray-900 text-[44px] uppercase font-semibold max-lg:text-2xl leading-tight">{props?.infos?.[index]?.title}</span>
                                 <span className="text-gray-900 text-sm max-w-290">{props?.infos?.[index]?.subtitle}</span>
                             </div>
                             <CarouselButtons

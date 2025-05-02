@@ -90,7 +90,7 @@ export const LayoutsView = (props: LayoutsViewProps) => {
                         <TextAnimation>{props?.subtitle}</TextAnimation>
                     </h4>
                 </div>
-                {!isMobile && <Rooms />}
+                {flats?.flats && flats?.flats?.length > 0 && !isMobile && <Rooms />}
             </div>
             <div className="relative aspect-[2.165/1] mt-50 -mx-70 max-lg:min-h-190 max-lg:aspect-[unset] max-lg:mt-24 max-lg:-mx-15">
                 <img src={props?.image} className="w-full h-full brightness-50" />
@@ -98,44 +98,7 @@ export const LayoutsView = (props: LayoutsViewProps) => {
                     {props?.description}
                 </p>
             </div>
-            {isMobile && <Rooms />}
-            {/* <div className="bg-orange py-50 -mt-180 -mr-70 flex relative z-10">
-                <div className="w-[calc(50%_-_80px)] -mt-50 -mb-167">
-                    <Carousel ref={carouselRef} dots={false} beforeChange={(_, id) => setIndex(id)}>
-                        {props?.flats?.map((info, id) => (
-                            <div key={id}>
-                                <div>
-                                    <img src={info?.image} alt={info?.title} className="w-full h-470 object-contain bg-white" />
-                                </div>
-                            </div>
-                        ))}
-                    </Carousel>
-                </div>
-                <div className="flex flex-col justify-between ml-90 relative">
-                    <div className="flex flex-col gap-12">
-                        <span className="text-white text-[32px] uppercase font-semibold leading-none">{props?.flats?.[index]?.title}</span>
-                        <span className="text-yellow-100 text-[20px] uppercase opacity-70 leading-none font-light">{props?.flats?.[index]?.subtitle}</span>
-                    </div>
-                    <div className="flex flex-col gap-12">
-                        <span className="text-yellow-100 text-sm font-leight leading-none">Площадь, м2</span>
-                        <span className="text-white text-[64px] uppercase leading-none font-light">{props?.flats?.[index]?.area}</span>
-                    </div>
-                    <div className="flex items-center gap-12">
-                        <div className="p-10 bg-white text-red text-sm">Вид на горы</div>
-                        <div className="p-10 bg-white text-red text-sm">Скидка 10%</div>
-                    </div>
-                    <div className="absolute -bottom-150">
-                        <CarouselButtons
-                            total={props?.flats?.length as number}
-                            next={nextSlide}
-                            prev={prevSlide}
-                            color="text-red"
-                            buttonClassNames={"!border-gray-900 !text-gray-900 hover:!bg-orange  hover:!border-orange hover:!text-white"}
-                            counterClassNames="!text-gray-900"
-                        />
-                    </div>
-                </div>
-            </div> */}
+            {flats?.flats && flats?.flats?.length > 0 && isMobile && <Rooms />}
             {flats?.flats && flats?.flats?.length > 0 && (
                 <div className="bg-orange -mx-70 py-50 mt-194 max-lg:mt-50 max-lg:-mx-15 max-lg:py-0 max-lg:bg-yellow-100">
                     <Row className="max-lg:!flex-col">
