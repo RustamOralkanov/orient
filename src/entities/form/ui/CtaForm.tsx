@@ -31,30 +31,37 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
 
     const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
         setIsLoading(true);
+        const extractUtmValue = (param: string | null) => {
+            if (!param || param === "/") return "/";
+            if (param.startsWith("_c_")) return param;
+            return param.split("_")[0];
+        };
+
         const urlParams = new URLSearchParams(window.location.search);
-        const utmSource = urlParams.get("utm_source") ?? "/";
-        const utmMedium = urlParams.get("utm_medium") ?? "/";
-        const utmCampaign = urlParams.get("utm_campaign") ?? "/";
-        const utmAgId = urlParams.get("utm_agid") ?? "/";
-        const utmContent = urlParams.get("utm_content") ?? "/";
-        const utmPlacement = urlParams.get("utm_placement") ?? "/";
-        const utmTerm = urlParams.get("utm_term") ?? "/";
+        const utmSource = extractUtmValue(urlParams.get("utm_source"));
+        const utmMedium = extractUtmValue(urlParams.get("utm_medium"));
+        const utmCampaign = extractUtmValue(urlParams.get("utm_campaign"));
+        const utmAgId = extractUtmValue(urlParams.get("utm_agid"));
+        const utmContent = extractUtmValue(urlParams.get("utm_content"));
+        const utmPlacement = extractUtmValue(urlParams.get("utm_placement"));
+        const utmTerm = extractUtmValue(urlParams.get("utm_term"));
         const gclid = urlParams.get("gclid") ?? "/";
         const fbclid = urlParams.get("fbclid") ?? "/";
         const yclid = urlParams.get("yclid") ?? "/";
-        const type_of_premises = "apartment";
         const platform = urlParams.get("referrer") ?? "/";
+        const type_of_premises = "apartment";
         const utm_route = "/";
         const type_payment = "/";
         const utm_flat = "/";
         const form_type = modal ? "popup" : "body";
-        const url = "orient.ab-capital.kz";
+        const url = "baitas.ab-capital.kz";
         const amo_visitor_uid = localStorage.getItem("visitor_uid");
 
         const datas = new FormData();
 
         if (values.name) datas.append("name", values.name);
         if (values.phone) datas.append("phone", values.phone);
+        if (amo_visitor_uid) datas.append("amo_visitor_uid", amo_visitor_uid);
         datas.append("utm_campaign", utmCampaign);
         datas.append("utm_content", utmContent);
         datas.append("utm_medium", utmMedium);
@@ -72,7 +79,6 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
         datas.append("type_payment", type_payment);
         datas.append("utm_flat", utm_flat);
         datas.append("form_type", form_type);
-        if (amo_visitor_uid) datas.append("amo_visitor_uid", amo_visitor_uid);
         datas.append("lead_comment", "/");
 
         await axios
