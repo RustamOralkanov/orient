@@ -93,7 +93,7 @@ export const ImprovementView = (props: ImprovementViewProps) => {
                                 {props?.features?.map((feature, id) => (
                                     <div key={id}>
                                         <div>
-                                            <img src={feature?.image} className="w-full h-full object-contain max-lg:min-h-380 max-lg:object-cover" />
+                                            <img src={feature?.image} className="w-full h-full object-cover max-lg:min-h-380 max-lg:object-cover" />
                                         </div>
                                     </div>
                                 ))}

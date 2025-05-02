@@ -16,8 +16,8 @@ export interface Ru {
         link: string;
         places: {
             title: string;
-            onCar: string;
-            onWalking: string;
+            time: string;
+            time_title: string;
             image: string;
         }[];
     };

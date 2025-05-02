@@ -47,27 +47,33 @@
             "places": [
                 {
                     "title": "Парк Первого президента",
-                    "onCar": "16",
-                    "onWalking": "8",
-                    "image": "/location-1.webp"
+                    "time": "10",
+                    "time_title": "минут",
+                    "image": "/5b899825b1141218d785916a2e6676bb647d3e52.webp"
                 },
                 {
-                    "title": "Парк Первого президента",
-                    "onCar": "11",
-                    "onWalking": "22",
-                    "image": "/location-1.webp"
+                    "title": "КАЗГАСА",
+                    "time": "1",
+                    "time_title": "минута ",
+                    "image": "/c8f7f9c69b547bde2fdb04938cea2a3741d5a13b.webp"
                 },
                 {
-                    "title": "Парк Первого президента",
-                    "onCar": "33",
-                    "onWalking": "4",
-                    "image": "/location-1.webp"
+                    "title": "ул. Саина",
+                    "time": "2",
+                    "time_title": "минуты",
+                    "image": "/28f88ed917cd33c5f423d3a6ddba42f94cd74700.webp"
                 },
                 {
-                    "title": "Парк Первого президента",
-                    "onCar": "16",
-                    "onWalking": "5",
-                    "image": "/location-1.webp"
+                    "title": "ул. Джандосова",
+                    "time": "5",
+                    "time_title": "минут",
+                    "image": "/7fa4f8015d1164980a89adb19309dc3c4dd7e027.webp"
+                },
+                {
+                    "title": "Mega Alma-Ata",
+                    "time": "5",
+                    "time_title": "минут",
+                    "image": "/b8e56f11c7fe110336daf5a13aee470673cc491b.webp"
                 }
             ]
         },

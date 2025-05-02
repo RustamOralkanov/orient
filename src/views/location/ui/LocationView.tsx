@@ -54,23 +54,15 @@ export const LocationView = (props: LocationViewProps) => {
                             whileInView={{ opacity: 1 }}
                             transition={{ delay: 0.1, duration: 1 }}
                             viewport={{ once: true }}
-                            className="flex flex-col justify-between gap-117 pl-70 font-display max-lg:p-24 max-lg:bg-red max-lg:mx-15 max-lg:-mt-30 max-lg:relative max-lg:z-10"
+                            className="flex flex-col h-full justify-between pl-70 font-display max-lg:p-24 max-lg:bg-red max-lg:mx-15 max-lg:-mt-30 max-lg:relative max-lg:z-10"
                         >
                             <div className="flex flex-col gap-30">
                                 <h5 className="text-[44px] text-white leading-tight max-w-420 max-lg:text-2xl">{props?.places?.[index]?.title}</h5>
                                 <div className="flex gap-56 items-center">
                                     <div className="flex gap-8 items-center">
-                                        <span className="text-[32px] text-yellow-dark leading-none">{props?.places?.[index]?.onCar}</span>
+                                        <span className="text-[32px] text-yellow-dark leading-none">{props?.places?.[index]?.time}</span>
                                         <div className="flex flex-col">
-                                            <span className="leading-tight text-white text-xs">минут</span>
-                                            <span className="leading-tight text-white text-xs">пешком</span>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-8 items-center">
-                                        <span className="text-[32px] text-yellow-dark leading-none">{props?.places?.[index]?.onWalking}</span>
-                                        <div className="flex flex-col">
-                                            <span className="leading-tight text-white text-xs">минут</span>
-                                            <span className="leading-tight text-white text-xs">на машине</span>
+                                            <span className="leading-tight text-white text-xs">{props?.places?.[index]?.time_title}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -78,12 +70,14 @@ export const LocationView = (props: LocationViewProps) => {
                             <CarouselButtons total={props?.places?.length as number} next={nextSlide} prev={prevSlide} />
                         </motion.div>
                     </Col>
-                    <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-                        <div className="aspect-[1.61/1] w-full -mb-120 max-lg:mb-0 max-lg:relative">
-                            <Carousel ref={carouselRef} dots={false} afterChange={(id) => setIndex(id)}>
+                    <Col xl={12} lg={24} md={24} sm={24} xs={24} className="-mt-60 -mb-120 max-lg:mt-0 max-lg:mb-0">
+                        <div className="w-full">
+                            <Carousel dots={false} ref={carouselRef} afterChange={(id) => setIndex(id)}>
                                 {props?.places?.map((place, id) => (
                                     <div key={id}>
-                                        <img src={place?.image} alt={place?.title} className="w-full h-full object-cover" />
+                                        <div className="aspect-[7/4] min-h-442 w-full h-full max-lg:min-h-380">
+                                            <img src={place?.image} className="w-full h-full object-cover max-lg:min-h-380 max-lg:object-cover" />
+                                        </div>
                                     </div>
                                 ))}
                             </Carousel>
