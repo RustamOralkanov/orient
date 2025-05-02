@@ -54,7 +54,7 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
         const type_payment = "/";
         const utm_flat = "/";
         const form_type = modal ? "popup" : "body";
-        const url = "baitas.ab-capital.kz";
+        const url = "orient.ab-capital.kz";
         const amo_visitor_uid = localStorage.getItem("visitor_uid");
 
         const datas = new FormData();
