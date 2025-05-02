@@ -14,7 +14,7 @@ export const ArchitectureView = (props: ArchitectureViewProps) => {
 
     return (
         <div className="container pt-135 max-lg:pt-100" id="architecture">
-            <h2 className="uppercase text-[177px] text-orange text-center flex flex-col leading-[1.1] max-lg:text-[40px]">
+            <h2 className="uppercase text-[177px] text-orange text-center flex flex-col leading-[1.1] max-2xl:text-[96px] max-lg:text-[40px]">
                 <TitleAnimation title={[props?.title || ""]} height={193} />
             </h2>
             <div className="flex gap-60 mt-100 max-lg:flex-col max-lg:mt-0">
