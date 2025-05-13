@@ -56,6 +56,8 @@ export const LayoutsView = (props: LayoutsViewProps) => {
         fetchFlats();
     }, []);
 
+    const layoutsDescription = props.description?.split("| ") || [];
+
     const Rooms = () => (
         <div className="flex flex-col gap-16 max-lg:mt-50">
             <span className="text-[16px] -tracking-[0.02em]">Комнатность</span>
@@ -94,9 +96,16 @@ export const LayoutsView = (props: LayoutsViewProps) => {
             </div>
             <div className="relative aspect-[2.165/1] mt-50 -mx-70 max-lg:min-h-190 max-lg:aspect-[unset] max-lg:mt-24 max-lg:-mx-15">
                 <img src={props?.image} className="w-full h-full brightness-50" />
-                <p className="absolute max-w-410 text-sm text-white -tracking-[0.03em] z-10 top-100 right-70 leading-normal max-lg:static max-lg:text-gray-900 max-lg:max-w-full max-lg:px-15 max-lg:mt-50 max-lg:text-sm">
-                    {props?.description}
-                </p>
+                <div className="flex flex-col gap-24 absolute z-10 top-100 right-70 ">
+                    {layoutsDescription?.map((item, id) => (
+                        <p
+                            key={id}
+                            className=" max-w-410 text-sm text-white -tracking-[0.03em] leading-normal max-lg:static max-lg:text-gray-900 max-lg:max-w-full max-lg:px-15 max-lg:mt-50 max-lg:text-sm"
+                        >
+                            {item}
+                        </p>
+                    ))}
+                </div>
             </div>
             {flats?.flats && flats?.flats?.length > 0 && isMobile && <Rooms />}
             {flats?.flats && flats?.flats?.length > 0 && (
