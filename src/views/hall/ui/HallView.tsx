@@ -57,8 +57,8 @@ export const HallView = (props: HallViewProps) => {
                             <Carousel dots={false} ref={carouselRef} afterChange={(id) => setIndex(id)}>
                                 {props?.infos?.map((info, id) => (
                                     <div key={id}>
-                                        <div>
-                                            <img src={info?.image} className="w-full h-full object-contain max-lg:min-h-380 max-lg:object-cover" />
+                                        <div className="">
+                                            <img src={info?.image} className="w-full h-full max-h-530 object-cover max-lg:min-h-380 max-lg:max-h-380 max-lg:object-cover" />
                                         </div>
                                     </div>
                                 ))}
