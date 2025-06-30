@@ -121,11 +121,9 @@
             ],
             "gallery": [
                 "/e5b4f827ef863d462d5fda1f3ccfa27039556d92.webp",
-                "/3d87b61b1caae305c3fdacf8be01b71a19b1b8c0.webp",
-                "/a554ac92035171a9ea2610dd00edf607449cd416 (1).webp",
                 "/958683eccc44d9ecd4977658e2558501e31207c7.webp",
                 "/c9b3af798b36cd6efddca42ba5904be64795fb36 (1).webp",
-                "/7260b9e46238183c2a305fe05f89311cc609a133.webp"
+                "/day.webp"
             ]
         },
         "architecture": {
@@ -177,7 +175,8 @@
                     "title": "Бесшумные лифты",
                     "image": "/image (5).webp"
                 }
-            ]
+            ],
+            "gallery": ["/hall-2.webp", "/hall-3.webp", "/hall-4.webp", "/hall-5.webp", "/hall-6.webp", "/hall-7.webp"]
         },
         "parking": {
             "title": "Паркинг",

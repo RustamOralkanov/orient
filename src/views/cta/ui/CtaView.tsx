@@ -30,7 +30,7 @@ export const CtaView = () => {
                 </Col>
                 <Col xl={14} lg={24} md={24} sm={24} xs={24}>
                     <div className="w-full h-full max-lg:!-mt-200">
-                        <img src="/night.webp" className="w-full h-full max-lg:max-h-200 object-cover" />
+                        <img src="/day.webp" className="w-full h-full max-lg:max-h-200 object-cover" />
                     </div>
                 </Col>
             </Row>

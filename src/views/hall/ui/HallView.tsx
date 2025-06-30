@@ -16,10 +16,18 @@ export const HallView = (props: HallViewProps) => {
             <div className="aspect-[1.59/1] -mx-70 max-lg:aspect-[unset] max-lg:-mx-15">
                 <img src={props?.image} alt="banner" className="w-full h-full object-cover max-lg:min-h-350" />
             </div>
-            <Row className="-mt-265 max-lg:mt-0">
+            <Row className="-mt-65 max-lg:mt-0">
                 <Col xl={8} lg={0} md={0} sm={0} xs={0}>
-                    <div className="flex flex-col gap-96 mt-154 max-lg:mt-0 ">
-                        <img src={props?.image_2} className="max-w-429 w-full h-auto object-contain max-lg:max-w-185 max-lg:-top-92.5 max-lg:hidden" />
+                    <div className="flex flex-col gap-96 mt-154 max-lg:mt-0">
+                        <Carousel dots={false} draggable fade autoplay className="max-lg:hidden">
+                            {props?.gallery?.map((item, id) => (
+                                <div key={id}>
+                                    <div className="max-w-429 w-full h-[565px] object-contain max-lg:max-w-185 max-lg:hidden">
+                                        <img src={item} className="w-full h-full object-cover" />
+                                    </div>
+                                </div>
+                            ))}
+                        </Carousel>
                         <p className="max-w-385 text-[16] uppercase -tracking-[0.02em] font-display max-lg:hidden">{props?.description_2}</p>
                     </div>
                 </Col>

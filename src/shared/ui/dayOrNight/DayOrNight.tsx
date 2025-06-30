@@ -9,7 +9,7 @@ export const DayOrNight = ({ onChange }: { onChange: (value: boolean) => void })
     };
 
     return (
-        <div className="absolute top-20 right-20 z-[2] h-52 p-8 bg-white flex items-center rounded-full gap-2">
+        <div className="absolute top-20 right-20 z-[2] h-52 p-8 bg-white flex items-center rounded-full gap-2" style={{ display: "none" }}>
             <div className="w-36 h-36 flex items-center justify-center rounded-full cursor-pointer relative z-[3]" onClick={() => handleOnChange(true)}>
                 <img src="/sun.svg" alt="sun" className={[active ? "brightness-10 invert-[1]" : "opacity-[50%]"].join(" ")} />
             </div>

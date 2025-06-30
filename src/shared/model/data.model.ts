@@ -55,6 +55,7 @@ export interface Ru {
         description_2: string;
         image: string;
         image_2: string;
+        gallery: string[];
         infos: {
             title: string;
             image: string;
