@@ -45,7 +45,7 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
         const gclid = urlParams.get("gclid") ?? "/";
         const fbclid = urlParams.get("fbclid") ?? "/";
         const yclid = urlParams.get("yclid") ?? "/";
-        const from_site = "ramsgarden-atyrau.kz";
+        const from_site = "orient.ab-capital.kz";
         const platform = urlParams.get("referer") ?? "/";
         const formType = modal ? "popup" : "body";
         const lead_comment = "/";
