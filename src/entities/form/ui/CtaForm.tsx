@@ -31,55 +31,48 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
 
     const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
         setIsLoading(true);
-        const extractUtmValue = (param: string | null) => {
-            if (!param || param === "/") return "/";
-            if (param.startsWith("_c_")) return param;
-            return param.split("_")[0];
-        };
 
         const urlParams = new URLSearchParams(window.location.search);
-        const utmSource = extractUtmValue(urlParams.get("utm_source"));
-        const utmMedium = extractUtmValue(urlParams.get("utm_medium"));
-        const utmCampaign = extractUtmValue(urlParams.get("utm_campaign"));
-        const utmAgId = extractUtmValue(urlParams.get("utm_agid"));
-        const utmContent = extractUtmValue(urlParams.get("utm_content"));
-        const utmPlacement = extractUtmValue(urlParams.get("utm_placement"));
-        const utmTerm = extractUtmValue(urlParams.get("utm_term"));
+
+        const utmSource = urlParams.get("utm_source") ?? "/";
+        const utmMedium = urlParams.get("utm_medium") ?? "/";
+        const utmCampaign = urlParams.get("utm_campaign")?.split("_")[0] ?? "/";
+        const utmAgid = urlParams.get("utm_agid") ?? "/";
+        const utmContent = urlParams.get("utm_content")?.split("_")[0] ?? "/";
+        const creativeId = urlParams.get("utm_content")?.split("_")[1] ?? "/";
+        const utmPlacement = urlParams.get("utm_placement") ?? "/";
+        const utmTerm = urlParams.get("utm_term")?.split("_")[0] ?? "/";
         const gclid = urlParams.get("gclid") ?? "/";
         const fbclid = urlParams.get("fbclid") ?? "/";
         const yclid = urlParams.get("yclid") ?? "/";
-        const platform = urlParams.get("referrer") ?? "/";
-        const type_of_premises = "apartment";
-        const utm_route = "/";
-        const type_payment = "/";
-        const utm_flat = "/";
-        const form_type = modal ? "popup" : "body";
-        const url = "orient.ab-capital.kz";
-        const amo_visitor_uid = localStorage.getItem("visitor_uid");
+        const from_site = "ramsgarden-atyrau.kz";
+        const platform = urlParams.get("referer") ?? "/";
+        const formType = modal ? "popup" : "body";
+        const lead_comment = "/";
+        const amo_visitor_uid = localStorage.getItem("visitor_uid") ?? "/";
 
         const datas = new FormData();
 
         if (values.name) datas.append("name", values.name);
         if (values.phone) datas.append("phone", values.phone);
         if (amo_visitor_uid) datas.append("amo_visitor_uid", amo_visitor_uid);
-        datas.append("utm_campaign", utmCampaign);
-        datas.append("utm_content", utmContent);
-        datas.append("utm_medium", utmMedium);
+
         datas.append("utm_source", utmSource);
-        datas.append("utm_term", utmTerm);
-        datas.append("url", url);
-        datas.append("utm_agid", utmAgId);
+        datas.append("utm_medium", utmMedium);
+        datas.append("utm_campaign", utmCampaign);
+        datas.append("utm_agid", utmAgid);
+        datas.append("utm_content", utmContent);
+        datas.append("creative_id", creativeId);
         datas.append("utm_placement", utmPlacement);
+        datas.append("utm_term", utmTerm);
         datas.append("gclid", gclid);
         datas.append("fbclid", fbclid);
         datas.append("yclid", yclid);
-        datas.append("type_of_premises", type_of_premises);
+        datas.append("from_site", from_site);
         datas.append("platform", platform);
-        datas.append("utm_route", utm_route);
-        datas.append("type_payment", type_payment);
-        datas.append("utm_flat", utm_flat);
-        datas.append("form_type", form_type);
-        datas.append("lead_comment", "/");
+        datas.append("form_type", formType);
+
+        datas.append("lead_comment", lead_comment);
 
         await axios
             .post("https://api.ab-capital.kz/api/guest/send-form", datas, {
@@ -102,11 +95,26 @@ export const CtaForm: React.FC<{ modal?: boolean }> = ({ modal }) => {
     };
 
     return (
-        <Form form={form} onFinish={onFinish} className={["flex flex-col ", modal ? "gap-24 max-lg:!gap-12" : "gap-35 max-lg:gap-24"].join(" ")}>
-            <Form.Item name="name" rules={[{ required: true, message: "Пожалуйста, заполните поле!" }]} className="!mb-0">
-                <input className="h-55 border-b-1 border-b-red w-full text-[20px] uppercase text-white outline-0" placeholder={data?.name} />
+        <Form
+            form={form}
+            onFinish={onFinish}
+            className={["flex flex-col ", modal ? "gap-24 max-lg:!gap-12" : "gap-35 max-lg:gap-24"].join(" ")}
+        >
+            <Form.Item
+                name="name"
+                rules={[{ required: true, message: "Пожалуйста, заполните поле!" }]}
+                className="!mb-0"
+            >
+                <input
+                    className="h-55 border-b-1 border-b-red w-full text-[20px] uppercase text-white outline-0"
+                    placeholder={data?.name}
+                />
             </Form.Item>
-            <Form.Item name="phone" rules={[{ required: true, message: "Пожалуйста, заполните поле!" }]} className="!mb-0">
+            <Form.Item
+                name="phone"
+                rules={[{ required: true, message: "Пожалуйста, заполните поле!" }]}
+                className="!mb-0"
+            >
                 <InputMask
                     mask="+7 (___) ___-__-__"
                     replacement={{ _: /\d/ }}
