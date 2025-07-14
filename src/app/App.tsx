@@ -7,7 +7,7 @@ import { CompanyView } from "@/views/company";
 import { CtaView } from "@/views/cta";
 import { HallView } from "@/views/hall";
 import { ImprovementView } from "@/views/improvement";
-import { LayoutsView } from "@/views/layouts";
+// import { LayoutsView } from "@/views/layouts";
 import { LocationView } from "@/views/location";
 import { MainView } from "@/views/main";
 import { ParkingView } from "@/views/parking";
@@ -40,7 +40,7 @@ export const App = () => {
                 <ArchitectureView {...data?.architecture} />
                 <HallView {...data?.hall} />
                 <ParkingView {...data?.parking} />
-                <LayoutsView {...data?.layouts} />
+                {/* <LayoutsView {...data?.layouts} /> */}
                 <CtaView />
                 <CompanyView {...data?.company} />
                 <ServiceView {...data?.service} />
