@@ -139,13 +139,13 @@ export const Footer = (props: FooterProps) => {
                 <div className="w-full h-1 bg-yellow-100 opacity-50" />
                 <img src={props?.logo} />
                 <div className="w-full h-1 bg-yellow-100 opacity-50" />
-                <div className="grid grid-cols-2 gap-50">
-                    <p className="text-xs text-yellow-100/50 -tracking-[0.02em] leading-[1.2]">
+                <div className="grid grid-cols-2 gap-50 max-lg:gap-24">
+                    <p className="text-xs text-yellow-100/50 -tracking-[0.02em] leading-[1.2] col-span-1 max-lg:col-span-2">
                         Жобаның архитектурасы, абаттандырудың, қасбеттердің, интерьердің, қолданылатын материалдардың
                         бейнелері, олардың нөмірленуі, кешеннің инфрақұрылымы шартты болып табылады және жобалау, салу
                         және пайдалану барысында өзгертілуі мүмкін.
                     </p>
-                    <p className="text-xs text-yellow-100/50 -tracking-[0.02em] leading-[1.2]">
+                    <p className="text-xs text-yellow-100/50 -tracking-[0.02em] leading-[1.2] col-span-1 max-lg:col-span-2">
                         Архитектура проекта, изображения благоустройства, фасадов, интерьера, применяемых материалов, их
                         нумерация, инфраструктура комплекса являются условными и могут быть изменены в ходе
                         проектирования, строительства и эксплуатации.
