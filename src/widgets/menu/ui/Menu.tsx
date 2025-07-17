@@ -1,6 +1,7 @@
 import { scrollToContent } from "@/shared/lib";
 import { useOrientContext } from "@/shared/model";
 import { Col, Drawer, DrawerProps, Row } from "antd";
+import useDownloader from "react-use-downloader";
 
 const pages = [
     {
@@ -39,18 +40,37 @@ const pages = [
 
 export const Menu = (props: DrawerProps) => {
     const { handleMenu } = useOrientContext();
+
+    const { download } = useDownloader();
+
+    const fileUrl = "/pr.pdf";
+    const filename = "Orient.pdf";
     return (
-        <Drawer {...props} closeIcon={false} width={"100%"} classNames={{ content: "p-70 !bg-orange !relative max-lg:px-15 max-lg:pt-120", body: "!p-0" }}>
+        <Drawer
+            {...props}
+            closeIcon={false}
+            width={"100%"}
+            classNames={{ content: "p-70 !bg-orange !relative max-lg:px-15 max-lg:pt-120", body: "!p-0" }}
+        >
             <div className="h-full">
-                <img src="/logo.svg" className="absolute left-2/4 -translate-x-2/4 z-50 max-lg:h-50 max-lg:left-15 max-lg:top-40 max-lg:-translate-x-0" />
+                <img
+                    src="/logo.svg"
+                    className="absolute left-2/4 -translate-x-2/4 z-50 max-lg:h-50 max-lg:left-15 max-lg:top-40 max-lg:-translate-x-0"
+                />
                 <button
                     className="absolute z top-30 right-70 px-20 h-50 rounded-full border-1 border-white text-white flex items-center gap-10 uppercase text-sm font-medium cursor-pointer max-lg:right-15"
                     style={{ zIndex: 9999 }}
                     onClick={handleMenu}
                 >
                     <svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.215942 3.5L0.590942 2.85048C10.3517 8.32544 15.815 9.87526 23.0006 12.0359L21.0006 15.5L0.215942 3.5Z" fill="#FDFBF6" />
-                        <path d="M0.215942 12.5L0.590942 13.1495C10.3517 7.67456 15.815 6.12474 23.0006 3.9641L21.0006 0.5L0.215942 12.5Z" fill="#FDFBF6" />
+                        <path
+                            d="M0.215942 3.5L0.590942 2.85048C10.3517 8.32544 15.815 9.87526 23.0006 12.0359L21.0006 15.5L0.215942 3.5Z"
+                            fill="#FDFBF6"
+                        />
+                        <path
+                            d="M0.215942 12.5L0.590942 13.1495C10.3517 7.67456 15.815 6.12474 23.0006 3.9641L21.0006 0.5L0.215942 12.5Z"
+                            fill="#FDFBF6"
+                        />
                     </svg>
                     Меню
                 </button>
@@ -74,7 +94,13 @@ export const Menu = (props: DrawerProps) => {
                             <div className="flex flex-col gap-24">
                                 <button className="flex gap-20 items-center text-left leading-tight text-white uppercase cursor-pointer text-[16px]">
                                     <span className="w-60 h-60 border border-gray-900 rounded-full flex items-center justify-center text-white">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 20 20"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
                                             <path
                                                 fillRule="evenodd"
                                                 clipRule="evenodd"
@@ -85,9 +111,18 @@ export const Menu = (props: DrawerProps) => {
                                     </span>
                                     Смотреть <br /> видеопрезентацию
                                 </button>
-                                <button className="flex gap-20 items-center text-left leading-tight text-white uppercase cursor-pointer text-[16px]">
+                                <button
+                                    className="flex gap-20 items-center text-left leading-tight text-white uppercase cursor-pointer text-[16px]"
+                                    onClick={() => download(fileUrl, filename)}
+                                >
                                     <span className="w-60 h-60 border border-gray-900 rounded-full flex items-center justify-center text-white">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 20 20"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
                                             <path
                                                 d="M10.4613 13.7551C10.3429 13.8846 10.1755 13.9583 10 13.9583C9.82453 13.9583 9.65714 13.8846 9.53873 13.7551L6.2054 10.1092C5.97248 9.85448 5.99019 9.45915 6.24494 9.22623C6.49969 8.99332 6.89502 9.01102 7.12794 9.26577L9.375 11.7235V2.5C9.375 2.15482 9.65482 1.875 10 1.875C10.3452 1.875 10.625 2.15482 10.625 2.5V11.7235L12.8721 9.26577C13.105 9.01102 13.5003 8.99332 13.7551 9.22623C14.0098 9.45915 14.0275 9.85448 13.7946 10.1092L10.4613 13.7551Z"
                                                 fill="currentColor"
@@ -101,7 +136,7 @@ export const Menu = (props: DrawerProps) => {
                                     <span>
                                         сКАЧАТЬ БУКЛЕТ
                                         <br />
-                                        <span className="text-sm opacity-50">PDF 13,8 Mb</span>
+                                        <span className="text-sm opacity-50">PDF 4.8 Mb</span>
                                     </span>
                                 </button>
                             </div>
