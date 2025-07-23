@@ -15,6 +15,7 @@ import { ServiceView } from "@/views/service";
 import { Footer } from "@/widgets/footer";
 import { OrientProvider } from "@/shared/provider";
 import { ParallaxProvider } from "react-scroll-parallax";
+import { Booking } from "@/shared/ui/booking";
 
 export const App = () => {
     const [data, setData] = useState<OrientData["ru"] | null>(null);
@@ -45,6 +46,7 @@ export const App = () => {
                 <CompanyView {...data?.company} />
                 <ServiceView {...data?.service} />
                 <Footer {...data?.footer} />
+                <Booking />
             </OrientProvider>
         </ParallaxProvider>
     );
