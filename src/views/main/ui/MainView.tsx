@@ -50,7 +50,7 @@ export const MainView = (props: MainViewProps) => {
                     <img src="/logo.svg" alt="logo" className="h-96 w-auto object-cover max-lg:h-63" />
                     <div className="flex items-center gap-20">
                         <a href={`tel:${props?.phone}`} className="text-orange font-normal max-lg:hidden">
-                            {props?.phone}
+                            Узнать подробнее
                         </a>
                         <button
                             className="relative z-10 px-20 h-50 rounded-full border-1 bg-yellow-100 border-orange text-orange flex items-center gap-10 uppercase text-sm font-medium cursor-pointer max-lg:border-white max-lg:text-white max-lg:hidden"

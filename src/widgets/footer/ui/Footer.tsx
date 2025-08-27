@@ -74,7 +74,7 @@ export const Footer = (props: FooterProps) => {
                                 href={`tel:${props?.phone}`}
                                 className="text-[64px] !text-white -tracking-[0.02em] font-light max-lg:text-[40px] max-lg:leading-[1.1]"
                             >
-                                {props?.phone}
+                                Узнать подробнее
                             </a>
                             <div className="flex gap-40 items-end justify-end">
                                 <img src={props?.company_logo} alt="logo" className="h-33" />

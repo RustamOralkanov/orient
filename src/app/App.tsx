@@ -4,7 +4,7 @@ import { OrientData } from "@/shared/model";
 import { AboutView } from "@/views/about";
 import { ArchitectureView } from "@/views/architecture";
 import { CompanyView } from "@/views/company";
-import { CtaView } from "@/views/cta";
+// import { CtaView } from "@/views/cta";
 import { HallView } from "@/views/hall";
 import { ImprovementView } from "@/views/improvement";
 // import { LayoutsView } from "@/views/layouts";
@@ -42,7 +42,7 @@ export const App = () => {
                 <HallView {...data?.hall} />
                 <ParkingView {...data?.parking} />
                 {/* <LayoutsView {...data?.layouts} /> */}
-                <CtaView />
+                {/* <CtaView /> */}
                 <CompanyView {...data?.company} />
                 <ServiceView {...data?.service} />
                 <Footer {...data?.footer} />
