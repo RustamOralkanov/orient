@@ -31,6 +31,12 @@ export const App = () => {
             });
     }, []);
 
+    useEffect(() => {
+        window.location.href = "https://ab-capital.kz";
+    }, []);
+
+    return <div>Redirecting...</div>;
+
     return (
         <ParallaxProvider>
             <OrientProvider>
