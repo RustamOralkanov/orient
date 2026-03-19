@@ -9,7 +9,6 @@ import { HallView } from "@/views/hall"
 import { ImprovementView } from "@/views/improvement"
 // import { LayoutsView } from "@/views/layouts";
 import { OrientProvider } from "@/shared/provider"
-import { Booking } from "@/shared/ui/booking"
 import { LocationView } from "@/views/location"
 import { MainView } from "@/views/main"
 import { ParkingView } from "@/views/parking"
@@ -46,7 +45,7 @@ export const App = () => {
 				<CompanyView {...data?.company} />
 				<ServiceView {...data?.service} />
 				<Footer {...data?.footer} />
-				<Booking />
+				{/* <Booking /> */}
 			</OrientProvider>
 		</ParallaxProvider>
 	)
