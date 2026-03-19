@@ -5,10 +5,10 @@ import { CompanyView } from "@/views/company"
 import axios from "axios"
 import { useEffect, useState } from "react"
 // import { CtaView } from "@/views/cta";
+import { OrientProvider } from "@/shared/provider"
 import { HallView } from "@/views/hall"
 import { ImprovementView } from "@/views/improvement"
-// import { LayoutsView } from "@/views/layouts";
-import { OrientProvider } from "@/shared/provider"
+import { LayoutsView } from "@/views/layouts"
 import { LocationView } from "@/views/location"
 import { MainView } from "@/views/main"
 import { ParkingView } from "@/views/parking"
@@ -40,7 +40,7 @@ export const App = () => {
 				<ArchitectureView {...data?.architecture} />
 				<HallView {...data?.hall} />
 				<ParkingView {...data?.parking} />
-				{/* <LayoutsView {...data?.layouts} /> */}
+				<LayoutsView {...data?.layouts} />
 				{/* <CtaView /> */}
 				<CompanyView {...data?.company} />
 				<ServiceView {...data?.service} />
