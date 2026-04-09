@@ -6,6 +6,9 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 // import { CtaView } from "@/views/cta";
 import { OrientProvider } from "@/shared/provider"
+import { CoworkingView } from "@/views/coworking"
+import { CtaView } from "@/views/cta"
+import { FamilySpaceView } from "@/views/family-space"
 import { HallView } from "@/views/hall"
 import { ImprovementView } from "@/views/improvement"
 import { LayoutsView } from "@/views/layouts"
@@ -39,9 +42,11 @@ export const App = () => {
 				<ImprovementView {...data?.improvement} />
 				<ArchitectureView {...data?.architecture} />
 				<HallView {...data?.hall} />
+				<FamilySpaceView />
+				<CoworkingView />
 				<ParkingView {...data?.parking} />
 				<LayoutsView {...data?.layouts} />
-				{/* <CtaView /> */}
+				<CtaView />
 				<CompanyView {...data?.company} />
 				<ServiceView {...data?.service} />
 				<Footer {...data?.footer} />
