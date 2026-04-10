@@ -27,7 +27,7 @@ export const FamilySpaceView = () => {
 								</div>
 							</div>
 							<img
-								src={"/improve-1asf.webp"}
+								src={"/2a9c6c32f87dd829ea8ed57ea9fdb400.jpg.jpeg"}
 								className="w-full h-auto"
 							/>
 						</div>
