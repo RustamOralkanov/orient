@@ -1,6 +1,6 @@
 import { Carousel, Col, Row } from "antd";
 import { useState } from "react";
-import { OrientData } from "@/shared/model";
+import { OrientData, useOrientContext } from "@/shared/model";
 import { Button, TextAnimation, TitleAnimation } from "@/shared/ui";
 import { CarouselButtons, MobileCarouselButtons } from "@/shared/ui/arrowButton";
 import { useCarousel } from "@/shared/lib";
@@ -11,9 +11,10 @@ type LocationViewProps = Partial<OrientData["ru"]["location"]>;
 export const LocationView = (props: LocationViewProps) => {
     const { carouselRef, nextSlide, prevSlide } = useCarousel();
     const [index, setIndex] = useState<number>(0);
+    const { handleFormModal } = useOrientContext();
 
     return (
-        <>
+        <motion.div onViewportEnter={handleFormModal} viewport={{ once: true, amount: 0.2 }}>
             <div className="container bg-orange pt-120 max-lg:pt-58" id="location">
                 <div className="relative flex justify-center">
                     <h2 className="h2 flex flex-col text-white leading-[1.1]">
@@ -86,6 +87,6 @@ export const LocationView = (props: LocationViewProps) => {
                     </Col>
                 </Row>
             </div>
-        </>
+        </motion.div>
     );
 };

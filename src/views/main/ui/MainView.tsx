@@ -57,7 +57,7 @@ export const MainView = (props: MainViewProps) => {
 					/>
 					<div className="flex items-center gap-20">
 						<button
-							className="text-orange font-normal cursor-pointer max-lg:hidden"
+							className="text-orange bg-yellow rounded-full border-1 border-orange px-20 h-50 font-normal cursor-pointer max-lg:hidden"
 							onClick={handleFormModal}
 						>
 							Узнать подробнее
