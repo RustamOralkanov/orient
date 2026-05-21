@@ -56,12 +56,12 @@ export const MainView = (props: MainViewProps) => {
 						className="h-96 w-auto object-cover max-lg:h-63"
 					/>
 					<div className="flex items-center gap-20">
-						<button
-							className="text-orange bg-yellow rounded-full border-1 border-orange px-20 h-50 font-normal cursor-pointer max-lg:hidden"
-							onClick={handleFormModal}
+						<a
+							href="tel:+77000088080"
+							className="text-orange bg-yellow rounded-full border-1 border-orange px-20 h-50 font-normal cursor-pointer flex items-center max-lg:hidden"
 						>
-							Узнать подробнее
-						</button>
+							+7 700 008 80 80
+						</a>
 						<button
 							className="relative z-10 px-20 h-50 rounded-full border-1 bg-yellow-100 border-orange text-orange flex items-center gap-10 uppercase text-sm font-medium cursor-pointer max-lg:border-white max-lg:text-white max-lg:hidden"
 							style={{ zIndex: 9999 }}
