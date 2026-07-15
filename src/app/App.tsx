@@ -1,11 +1,9 @@
 import { OrientData } from "@/shared/model"
+import { OrientProvider } from "@/shared/provider"
 import { AboutView } from "@/views/about"
 import { ArchitectureView } from "@/views/architecture"
+import { BusinessView } from "@/views/business"
 import { CompanyView } from "@/views/company"
-import axios from "axios"
-import { useEffect, useState } from "react"
-// import { CtaView } from "@/views/cta";
-import { OrientProvider } from "@/shared/provider"
 import { CoworkingView } from "@/views/coworking"
 import { CtaView } from "@/views/cta"
 import { FamilySpaceView } from "@/views/family-space"
@@ -17,6 +15,8 @@ import { MainView } from "@/views/main"
 import { ParkingView } from "@/views/parking"
 import { ServiceView } from "@/views/service"
 import { Footer } from "@/widgets/footer"
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { ParallaxProvider } from "react-scroll-parallax"
 
 export const App = () => {
@@ -47,6 +47,7 @@ export const App = () => {
 				<ParkingView {...data?.parking} />
 				<LayoutsView {...data?.layouts} />
 				<CtaView />
+				<BusinessView />
 				<CompanyView {...data?.company} />
 				<ServiceView {...data?.service} />
 				<Footer {...data?.footer} />
