@@ -1,6 +1,16 @@
-import { Col, Row } from "antd"
+import { useCarousel } from "@/shared/lib"
+import { CarouselButtons, MobileCarouselButtons } from "@/shared/ui/arrowButton"
+import { Carousel, Col, Row } from "antd"
+
+const GALLERY = [
+	"/Guest's Room_1.jpg.webp",
+	"/Guest's Room_2.jpg.webp",
+	"/Guest's Room_3.jpg.webp"
+]
 
 export const FamilySpaceView = () => {
+	const { carouselRef, nextSlide, prevSlide } = useCarousel()
+
 	return (
 		<div className="mt-205 container  max-lg:mt-80">
 			<div className="max-lg:border-t-0 max-lg:pt-0">
@@ -22,14 +32,34 @@ export const FamilySpaceView = () => {
 								<div className="aspect-square max-w-200 max-lg:absolute max-lg:-bottom-47 max-lg:right-0 max-lg:max-w-185  max-lg:z-10">
 									<img
 										src={"/Rectangle 43.webp"}
-										className="w-full h-full object-cover object-left"
+										className="w-full h-full object-cover object-left max-lg:hidden"
 									/>
 								</div>
 							</div>
-							<img
-								src={"/2a9c6c32f87dd829ea8ed57ea9fdb400.jpg.jpeg"}
-								className="w-full h-auto"
-							/>
+							<div className="relative overflow-hidden">
+								<Carousel
+									ref={carouselRef}
+									dots={false}
+									draggable
+									adaptiveHeight={false}
+								>
+									{GALLERY.map(src => (
+										<div key={src}>
+											<div className="aspect-[4/3] w-full">
+												<img
+													src={src}
+													alt="Family Space"
+													className="w-full h-full object-cover"
+												/>
+											</div>
+										</div>
+									))}
+								</Carousel>
+								<MobileCarouselButtons
+									next={nextSlide}
+									prev={prevSlide}
+								/>
+							</div>
 						</div>
 					</Col>
 					<Col
@@ -39,8 +69,8 @@ export const FamilySpaceView = () => {
 						sm={24}
 						xs={24}
 					>
-						<div className="flex flex-col justify-between h-full">
-							<div className="flex flex-col gap-60 bg-orange p-60 -mr-70 max-lg:mr-0 max-lg:p-36  max-lg:pt-85  max-lg:gap-34">
+						<div className="flex flex-col justify-between h-fit">
+							<div className="flex flex-col justify-between gap-60 bg-orange p-60 -mr-70 max-lg:mr-0 max-lg:p-36  max-lg:pt-85  max-lg:gap-34 h-full">
 								<div className="flex flex-col gap-24 ">
 									<p className="text-white text-sm -tracking-[0.02em] font-light leading-normal font-display">
 										Это не просто помещение, а продуманная зона для комфортного
@@ -57,10 +87,13 @@ export const FamilySpaceView = () => {
 										встреча становится по-настоящему особенной.
 									</p>
 								</div>
+								<CarouselButtons
+									total={GALLERY.length}
+									next={nextSlide}
+									prev={prevSlide}
+									color="text-white"
+								/>
 							</div>
-							<p className="text-gray-900 max-w-340 uppercase text-sm -tracking-[0.02em] leading-normal font-display ml-auto  max-lg:hidden">
-								Family Space — когда дом становится больше, чем ваша квартира.
-							</p>
 						</div>
 					</Col>
 				</Row>
