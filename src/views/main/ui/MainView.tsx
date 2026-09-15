@@ -116,7 +116,9 @@ export const MainView = (props: MainViewProps) => {
 						</h1>
 						<TextAnimation>
 							<p className="text-[20px] uppercase text-white leading-[1.5] max-w-420 font-light max-lg:text-sm">
-								{props?.main?.subtitle}
+								Квартиры от <span className="line-through">950.000 тг/м2</span>.{" "}
+								<br /> Новая цена от 830 000 тг/м2.
+								<br /> Рассрочка 50/50
 							</p>
 						</TextAnimation>
 					</div>
