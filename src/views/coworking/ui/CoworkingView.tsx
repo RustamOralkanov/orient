@@ -4,7 +4,7 @@ export const CoworkingView = () => {
 	return (
 		<div
 			className="container pt-170 max-lg:pt-101"
-			id="layout"
+			id="coworking"
 		>
 			<div className="flex justify-between items-end">
 				<div className="flex flex-col gap-24">

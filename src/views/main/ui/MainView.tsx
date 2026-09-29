@@ -1,5 +1,5 @@
 import { MenuButton } from "@/entities/menu"
-import { useResponsive } from "@/shared/lib"
+import { scrollToContent, useResponsive } from "@/shared/lib"
 import { OrientData, useOrientContext } from "@/shared/model"
 import { Button, TextAnimation } from "@/shared/ui"
 import { motion } from "motion/react"
@@ -56,6 +56,13 @@ export const MainView = (props: MainViewProps) => {
 						className="h-96 w-auto object-cover max-lg:h-63"
 					/>
 					<div className="flex items-center gap-20">
+						<button
+							type="button"
+							onClick={() => scrollToContent("layout")}
+							className="text-orange bg-yellow rounded-full border-1 border-orange px-20 h-50 font-normal cursor-pointer flex items-center max-lg:hidden"
+						>
+							Выбрать квартиру
+						</button>
 						<a
 							href="tel:+77000088080"
 							className="text-orange bg-yellow rounded-full border-1 border-orange px-20 h-50 font-normal cursor-pointer flex items-center max-lg:hidden"
