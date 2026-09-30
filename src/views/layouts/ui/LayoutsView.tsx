@@ -1,4 +1,4 @@
-import { useCarousel, useResponsive } from "@/shared/lib"
+import { useCarousel } from "@/shared/lib"
 import { OrientData } from "@/shared/model"
 import { TextAnimation, TitleAnimation } from "@/shared/ui"
 import { CarouselButtons, MobileCarouselButtons } from "@/shared/ui/arrowButton"
@@ -33,8 +33,7 @@ interface Flats {
 }
 
 export const LayoutsView = (props: LayoutsViewProps) => {
-	const { isMobile } = useResponsive()
-	const { carouselRef, nextSlide, prevSlide } = useCarousel()
+	const { carouselRef, nextSlide, prevSlide, goToSlide } = useCarousel()
 	const [flats, setFlats] = useState<Flats | undefined>(undefined)
 	const [index, setIndex] = useState<number>(0)
 	const [rooms, setRooms] = useState<number | null>(1)
@@ -59,23 +58,34 @@ export const LayoutsView = (props: LayoutsViewProps) => {
 		fetchFlats()
 	}, [])
 
+	useEffect(() => {
+		setIndex(0)
+		goToSlide(0, true)
+	}, [rooms, goToSlide])
+
 	const layoutsDescription = props.description?.split("| ") || []
 
 	const getFlats = () => {
 		return flats?.flats?.filter(flat => flat.rooms === rooms)
 	}
 
+	const filteredFlats = getFlats()
+
 	const Rooms = () => (
-		<div className="flex flex-col gap-16 max-lg:mt-50">
-			<span className="text-[16px] -tracking-[0.02em]">Комнатность</span>
+		<div className="flex flex-col gap-16">
+			<span className="text-[16px] -tracking-[0.02em] text-white">
+				Комнатность
+			</span>
 			<div className="flex items-center gap-10">
 				{[...Array(4)].map((_, id) => (
 					<button
 						key={id}
 						onClick={() => setRooms(id + 1)}
 						className={[
-							"cursor-pointer w-60 h-60 rounded-full border-1 border-gray-900  text-32 leading-none text-[32px] font-light transition-all duration-300",
-							rooms === id + 1 ? "text-white bg-orange" : "text-gray-900"
+							"cursor-pointer w-60 h-60 rounded-full border-1 border-white  text-32 leading-none text-[32px] font-light transition-all duration-300",
+							rooms === id + 1
+								? "text-white bg-orange"
+								: "text-yellow-100/50 border-yellow-100/50"
 						].join(" ")}
 					>
 						{id + 1 === 4 ? id + 1 + "+" : id + 1}
@@ -103,7 +113,6 @@ export const LayoutsView = (props: LayoutsViewProps) => {
 						<TextAnimation>{props?.subtitle}</TextAnimation>
 					</h4>
 				</div>
-				{flats?.flats && flats?.flats?.length > 0 && !isMobile && <Rooms />}
 			</div>
 			<div className="relative aspect-[2.165/1] mt-50 -mx-70 max-lg:min-h-190 max-lg:aspect-[unset] max-lg:mt-24 max-lg:-mx-15">
 				<img
@@ -131,7 +140,6 @@ export const LayoutsView = (props: LayoutsViewProps) => {
 					</p>
 				))}
 			</div>
-			{flats?.flats && flats?.flats?.length > 0 && isMobile && <Rooms />}
 			{flats?.flats && flats?.flats?.length > 0 && (
 				<div
 					className="bg-orange -mr-70 py-50 -mt-194 relative z-10 max-lg:mt-50 max-lg:-mx-15 max-lg:py-0 max-lg:bg-yellow-100"
@@ -145,13 +153,13 @@ export const LayoutsView = (props: LayoutsViewProps) => {
 							sm={24}
 							xs={24}
 						>
-							<div className="-mt-50 -mb-170 max-lg:ml-0 max-lg:mt-0 max-lg:mb-0">
+							<div className="relative -mt-50 -mb-170 max-lg:ml-0 max-lg:mt-0 max-lg:mb-0">
 								<Carousel
 									ref={carouselRef}
 									dots={false}
 									beforeChange={(_, id) => setIndex(id)}
 								>
-									{getFlats()?.map((info, id) => (
+									{filteredFlats?.map((info, id) => (
 										<div key={id}>
 											<div>
 												<img
@@ -162,6 +170,25 @@ export const LayoutsView = (props: LayoutsViewProps) => {
 										</div>
 									))}
 								</Carousel>
+								{(filteredFlats?.length ?? 0) > 1 && (
+									<div className="absolute bottom-24 left-0 right-0 z-10 flex items-center justify-center gap-8 max-lg:bottom-16">
+										{filteredFlats?.map((_, id) => (
+											<button
+												key={id}
+												type="button"
+												aria-label={`Слайд ${id + 1}`}
+												aria-current={index === id}
+												onClick={() => goToSlide(id)}
+												className={[
+													"h-8 rounded-full transition-all duration-300 cursor-pointer",
+													index === id
+														? "w-32 bg-orange"
+														: "w-8 bg-gray-900/25 hover:bg-gray-900/40"
+												].join(" ")}
+											/>
+										))}
+									</div>
+								)}
 								<MobileCarouselButtons
 									next={nextSlide}
 									prev={prevSlide}
@@ -180,11 +207,12 @@ export const LayoutsView = (props: LayoutsViewProps) => {
 								whileInView={{ opacity: 1 }}
 								transition={{ delay: 0.1, duration: 1 }}
 								viewport={{ once: true }}
-								className="flex flex-col justify-between font-display h-full max-lg:bg-orange max-lg:gap-30 max-lg:p-24 max-lg:mx-15 max-lg:-mt-30"
+								className="flex flex-col justify-between font-display h-full max-lg:bg-orange max-lg:gap-30 max-lg:p-24 max-lg:mx-15 "
 							>
-								<div className="flex flex-col gap-12">
+								<div className="flex flex-col gap-24 max-lg:gap-48">
+									<Rooms />
 									<span className="text-white text-[32px] uppercase font-semibold leading-none">
-										{getFlats()?.[index]?.rooms}-комнатная
+										{filteredFlats?.[index]?.rooms}-комнатная
 									</span>
 									{/* <span className="text-yellow-100 text-[20px] uppercase opacity-70 leading-none font-light">{flats?.flats?.[index]?.subtitle}</span> */}
 								</div>
@@ -193,7 +221,7 @@ export const LayoutsView = (props: LayoutsViewProps) => {
 										Площадь, м2
 									</span>
 									<span className="text-white text-[64px] uppercase leading-none font-light">
-										{getFlats()?.[index]?.size}
+										{filteredFlats?.[index]?.size}
 									</span>
 								</div>
 								{/* <div className="flex items-center gap-12">
@@ -202,7 +230,7 @@ export const LayoutsView = (props: LayoutsViewProps) => {
                                 </div> */}
 								<div className="absolute -bottom-150">
 									<CarouselButtons
-										total={getFlats()?.length as number}
+										total={filteredFlats?.length as number}
 										next={nextSlide}
 										prev={prevSlide}
 										color="text-red"
