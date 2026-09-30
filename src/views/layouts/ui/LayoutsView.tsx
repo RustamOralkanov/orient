@@ -209,9 +209,9 @@ export const LayoutsView = (props: LayoutsViewProps) => {
 								viewport={{ once: true }}
 								className="flex flex-col justify-between font-display h-full max-lg:bg-orange max-lg:gap-30 max-lg:p-24 max-lg:mx-15 "
 							>
-								<div className="flex flex-col gap-24 max-lg:gap-48">
+								<div className="flex flex-col gap-24">
 									<Rooms />
-									<span className="text-white text-[32px] uppercase font-semibold leading-none">
+									<span className="text-white text-[32px] uppercase font-semibold leading-none hidden">
 										{filteredFlats?.[index]?.rooms}-комнатная
 									</span>
 									{/* <span className="text-yellow-100 text-[20px] uppercase opacity-70 leading-none font-light">{flats?.flats?.[index]?.subtitle}</span> */}
